@@ -149,7 +149,7 @@
         "name": "text_serial",
         "label": "Seriennummer: ",
         "format": "{{msg.payload}}",
-        "layout": "row-center",
+        "layout": "row-spread",
         "x": 1026,
         "y": 616,
         "wires": []
@@ -597,30 +597,6 @@
         ]
     },
     {
-        "id": "19951882.41d5d7",
-        "type": "ui_button",
-        "z": "ef2e3d60.bc774",
-        "name": "get_time",
-        "group": "ff3a9e64.3083",
-        "order": 3,
-        "width": "3",
-        "height": "1",
-        "label": "Wechselrichter Zeit",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "true",
-        "payloadType": "bool",
-        "topic": "Current_time",
-        "x": 305,
-        "y": 514,
-        "wires": [
-            [
-                "13a3a0e5.0d031f"
-            ]
-        ]
-    },
-    {
         "id": "c3643226.848c7",
         "type": "ui_text",
         "z": "ef2e3d60.bc774",
@@ -631,9 +607,9 @@
         "name": "text_time",
         "label": "Inverter Zeit: ",
         "format": "{{msg.payload}}",
-        "layout": "row-center",
-        "x": 1031,
-        "y": 543,
+        "layout": "row-spread",
+        "x": 1034,
+        "y": 549,
         "wires": []
     },
     {
@@ -641,7 +617,7 @@
         "type": "function",
         "z": "ef2e3d60.bc774",
         "name": "print current time",
-        "func": "function pad(n) {\n    if (n<10) // do zero padding\n    {\n        var str = \"0\" + n.toString();\n        return str;\n    }\n    else\n    {\n        return n.toString();\n    }\n}\n\nif (msg.topic === \"current_time\") // should be always the case\n{\n    var buffer = msg.payload;\n    year = 2000 + buffer[0];\n    month = buffer[1];\n    day = buffer[2];\n    hour = buffer[3];\n    minute = buffer[4];\n    var text = day + \".\" + month + \".\" + year + \", \" + hour + \":\"+ pad(minute);\n    msg = {payload: text};\n    return msg;\n}\n",
+        "func": "function pad(n) {\n    if (n<10) // do zero padding\n    {\n        var str = \"0\" + n.toString();\n        return str;\n    }\n    else\n    {\n        return n.toString();\n    }\n}\n\nif (msg.topic === \"current_time\") // should be always the case\n{\n    var buffer = msg.payload;\n    year = 2000 + buffer[0];\n    month = buffer[1];\n    day = buffer[2];\n    hour = buffer[3];\n    minute = buffer[4];\n    var text = pad(day) + \".\" + pad(month) + \".\" + year + \", \" + hour + \":\"+ pad(minute);\n    msg = {payload: text};\n    return msg;\n}\n",
         "outputs": 1,
         "noerr": 0,
         "x": 796,
@@ -660,7 +636,7 @@
         "topic": "Current_time",
         "payload": "true",
         "payloadType": "bool",
-        "repeat": "",
+        "repeat": "45",
         "crontab": "",
         "once": false,
         "x": 289,
