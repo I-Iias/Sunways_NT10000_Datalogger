@@ -347,7 +347,7 @@
         "type": "function",
         "z": "ef2e3d60.bc774",
         "name": "write online data",
-        "func": "if (msg.topic === \"Online_data1\" || msg.topic === \"Online_data2\" || msg.topic === \"Online_data3\")\n{\n    var buffer = msg.payload;\n    // convert data\n    var udc = buffer[0] * 2.8 + 200;\n    var idc = buffer[1] * 0.08;\n    var uac = buffer[2] + 100;\n    var iac = buffer[3] * 0.12;\n    var temp = buffer[4] - 40;  // Temperature\n    var s = buffer[5] * 6;      // radiation\n    var pdc = udc * idc;\n    var pac = uac * iac;\n    var wd = (buffer[6] * 256 + buffer[7]) *10 / 1000; // Tagesertrag kWh\n    var aux = buffer[11] & 0xC5;\n    var overflow = aux>>6 | (aux&4)<<1 | (aux&1)<<2;\n    var wtot = overflow * 65536 + buffer[8] * 256 + buffer[9];     // Gesamtertrag kWh\n    var error = buffer[10];\n    var data_string = \"'\" + udc + \"', '\" + idc + \"', '\" + uac + \"', '\" + iac + \"', '\" + pdc + \"', '\" + pac + \"', '\" + wd + \"', '\" + wtot + \"', '\" + error + \"'\";\n    var db_msg = {topic: \"\"};\n    db_msg.topic = \"INSERT INTO `\" + msg.topic + \"`(`U_dc`, `I_dc`, `U_ac`, `I_ac`, `P_dc`, `P_ac`, `Tagesertrag`, `Gesamtertrag`, `Fehlercode`) VALUES (\" + data_string + \")\";\n\n    return [db_msg, null];\n}\nelse if (msg.topic === \"Online_data_overall\")\n{\n    var buffer = msg.payload;\n    // convert data\n    var pdc = (buffer[0] * 256 + buffer[1])/1000;   // kW\n    var pac = (buffer[2] * 256 + buffer[3])/1000;   // kW\n    var temp = 0;\n    var radi = 0;\n    if (buffer[4] === 1) // no temperature sensor\n    {\n        temp = -40;\n    }\n    else \n    {\n        temp = buffer[4] - 40; // °C\n    }\n    if (buffer[5] === 1) // no radiation sensor\n    {\n        radi = 0;\n    }\n    else \n    {\n        radi = buffer[5] * 6;   // W/m^2\n    }\n    var wd = (buffer[6] * 256 + buffer[7]) * 10 / 1000; // Tagesertrag kWh\n    var aux = buffer[11] & 0xC5;\n    var overflow = aux>>6 | (aux&4)<<1 | (aux&1)<<2;\n    var wtot = overflow * 65536 + buffer[8] * 256 + buffer[9];     // Gesamtertrag kWh\n    var error = buffer[10];\n    // create database msg\n    var data_string = \"'\" + pdc + \"', '\" + pac + \"', '\" + temp + \"', '\" + radi + \"', '\" + wd + \"', '\" + wtot + \"', '\" + error + \"'\";\n    var db_msg = {topic: \"\"};\n    db_msg.topic = \"INSERT INTO `\" + msg.topic + \"`(`P_dc`, `P_ac`, `Temperatur`, `Radiation`, `Tagesertrag`, `Gesamtertrag`, `Fehlercode`) VALUES (\" + data_string + \")\";\n    \n    \n    var plot_pac = {payload: pac};\n    plot_pac.topic = \"pac\";\n    var print_wd = {payload: \"\"+ wd + \" kWh\"};\n    print_wd.topic = \"wd\";\n    var print_wtot = {payload: \"\" + wtot + \" kWh\"};\n    print_wtot.topic = \"wtot\";\n    var print_error = {payload: error};\n    print_wtot.topic = \"error\";\n    return [db_msg, [plot_pac, print_wd, print_wtot, print_error]];\n}\n\n",
+        "func": "if (msg.topic === \"Online_data1\" || msg.topic === \"Online_data2\" || msg.topic === \"Online_data3\")\n{\n    var buffer = msg.payload;\n    // convert data\n    var udc = buffer[0] * 2.8 + 200;\n    var idc = buffer[1] * 0.08;\n    var uac = buffer[2] + 100;\n    var iac = buffer[3] * 0.12;\n    var temp = buffer[4] - 40;  // Temperature\n    var s = buffer[5] * 6;      // radiation\n    var pdc = udc * idc;\n    var pac = uac * iac;\n    var wd = (buffer[6] * 256 + buffer[7]) *10 / 1000; // Tagesertrag kWh\n    var aux = buffer[11] & 0xC5;\n    var overflow = aux>>6 | (aux&4)<<1 | (aux&1)<<2;\n    var wtot = overflow * 65536 + buffer[8] * 256 + buffer[9];     // Gesamtertrag kWh\n    var error = buffer[10];\n    var data_string = \"'\" + udc + \"', '\" + idc + \"', '\" + uac + \"', '\" + iac + \"', '\" + pdc + \"', '\" + pac + \"', '\" + wd + \"', '\" + wtot + \"', '\" + error + \"'\";\n    var db_msg = {topic: \"\"};\n    db_msg.topic = \"INSERT INTO `\" + msg.topic + \"`(`U_dc`, `I_dc`, `U_ac`, `I_ac`, `P_dc`, `P_ac`, `Tagesertrag`, `Gesamtertrag`, `Fehlercode`) VALUES (\" + data_string + \")\";\n\n    return [db_msg, null];\n}\nelse if (msg.topic === \"Online_data_overall\")\n{\n    var buffer = msg.payload;\n    // convert data\n    var pdc = (buffer[0] * 256 + buffer[1])/1000;   // kW\n    var pac = (buffer[2] * 256 + buffer[3])/1000;   // kW\n    var temp = 0;\n    var radi = 0;\n    if (buffer[4] === 1) // no temperature sensor\n    {\n        temp = -40;\n    }\n    else \n    {\n        temp = buffer[4] - 40; // °C\n    }\n    if (buffer[5] === 1) // no radiation sensor\n    {\n        radi = 0;\n    }\n    else \n    {\n        radi = buffer[5] * 6;   // W/m^2\n    }\n    var wd = (buffer[6] * 256 + buffer[7]) * 10 / 1000; // Tagesertrag kWh\n    var aux = buffer[11] & 0xC5;\n    var overflow = aux>>6 | (aux&4)<<1 | (aux&1)<<2;\n    var wtot = overflow * 65536 + buffer[8] * 256 + buffer[9];     // Gesamtertrag kWh\n    var error = buffer[10];\n    // create database msg\n    var data_string = \"'\" + pdc + \"', '\" + pac + \"', '\" + temp + \"', '\" + radi + \"', '\" + wd + \"', '\" + wtot + \"', '\" + error + \"'\";\n    var db_msg = {topic: \"\"};\n    db_msg.topic = \"INSERT INTO `\" + msg.topic + \"`(`P_dc`, `P_ac`, `Temperatur`, `Radiation`, `Tagesertrag`, `Gesamtertrag`, `Fehlercode`) VALUES (\" + data_string + \")\";\n    \n    \n    var plot_pac = {payload: pac};\n    plot_pac.topic = \"pac\";\n    var print_wd = {payload: \"\"+ wd + \" kWh\"};\n    print_wd.topic = \"wd\";\n    var print_wtot = {payload: \"\" + wtot + \" kWh\"};\n    print_wtot.topic = \"wtot\";\n    var print_error = {payload: error};\n    print_error.topic = \"error\";\n    return [db_msg, [plot_pac, print_wd, print_wtot, print_error]];\n}\n\n",
         "outputs": "2",
         "noerr": 0,
         "x": 837,
@@ -358,7 +358,8 @@
                 "56e97ec.933438"
             ],
             [
-                "b37b552f.a301d8"
+                "b37b552f.a301d8",
+                "e9b7653c.88cd98"
             ]
         ]
     },
@@ -682,8 +683,8 @@
         "label": "Gesamtertrag: ",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 1301,
-        "y": 893,
+        "x": 1314,
+        "y": 892,
         "wires": []
     },
     {
@@ -789,7 +790,7 @@
         "type": "function",
         "z": "ef2e3d60.bc774",
         "name": "plot online data",
-        "func": "if (msg.topic === \"pac\") // ac Power\n{\n    return [msg, null, null, null];\n}\nelse if (msg.topic === \"wd\") // day Wh\n{\n    return [null, msg, null, null];\n}\nelse if (msg.topic === \"wtot\")\n{\n    return [null, null, msg, null];\n}\nelse if (msg.topic === \"error\")\n{\n    var error = msg.payload;\n    var text = \"\";\n    if ((error === 0) || (error === 128))\n    {\n        text = \"keinen Fehler\";\n    }\n    else\n    {\n        text = \"Fehler\";\n    }\n    msg = {payload: text};\n    return [null, null, null, msg];\n}",
+        "func": "if (msg.topic === \"pac\") // ac Power\n{\n    return [msg, null, null, null];\n}\nelse if (msg.topic === \"wd\") // day Wh\n{\n    return [null, msg, null, null];\n}\nelse if (msg.topic === \"wtot\")\n{\n    return [null, null, msg, null];\n}\nelse if (msg.topic === \"error\")\n{\n    var error = msg.payload;\n    var text = \"\";\n    if ((error === 0) || (error === 128))\n    {\n        text = \"keinen Fehler\";\n    }\n    else\n    {\n        text = error;\n    }\n    msg = {payload: text};\n    return [null, null, null, msg];\n}",
         "outputs": "4",
         "noerr": 0,
         "x": 1082,
@@ -926,8 +927,20 @@
         "label": "Wechselrichter hat: ",
         "format": "{{msg.payload}}",
         "layout": "row-spread",
-        "x": 1283,
-        "y": 934,
+        "x": 1288,
+        "y": 935,
+        "wires": []
+    },
+    {
+        "id": "e9b7653c.88cd98",
+        "type": "debug",
+        "z": "ef2e3d60.bc774",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 1081,
+        "y": 959,
         "wires": []
     }
 ]
