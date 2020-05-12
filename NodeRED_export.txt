@@ -1,21 +1,21 @@
 [
     {
-        "id": "ef2e3d60.bc774",
+        "id": "46efba90.c91554",
         "type": "tab",
         "label": "Flow 1"
     },
     {
-        "id": "11a2825f.b962ae",
+        "id": "3a75e211.4930ee",
         "type": "tab",
         "label": "Flow 2"
     },
     {
-        "id": "cba188be.285ea8",
+        "id": "b9ee919e.468a1",
         "type": "tab",
         "label": "Flow 3"
     },
     {
-        "id": "fa65c39b.2b42b",
+        "id": "c7d88893.396ce8",
         "type": "serial-port",
         "z": "",
         "serialport": "/dev/ttyAMA0",
@@ -29,30 +29,112 @@
         "addchar": false
     },
     {
-        "id": "ff3a9e64.3083",
+        "id": "d6509987.c55068",
         "type": "ui_group",
         "z": "",
         "name": "Wechselrichter Info",
-        "tab": "2b8369e6.0695e6",
+        "tab": "4c2cb675.22cc58",
         "order": 1,
         "disp": true,
         "width": "5"
     },
     {
-        "id": "2b8369e6.0695e6",
+        "id": "4c2cb675.22cc58",
         "type": "ui_tab",
         "z": "",
         "name": "Home",
         "icon": "dashboard"
     },
     {
-        "id": "90a05255.d8e8c",
+        "id": "ccb47487.fc7c88",
         "type": "ui_base",
-        "name": "Node-RED Dashboard",
-        "theme": "theme-light"
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
     },
     {
-        "id": "448c7b52.637e04",
+        "id": "a1a56ac3.5e8868",
         "type": "MySQLdatabase",
         "z": "",
         "host": "127.0.0.1",
@@ -61,7 +143,7 @@
         "tz": "UTC+1"
     },
     {
-        "id": "9129120a.2c62e",
+        "id": "f8d21c38.6bc45",
         "type": "ui_tab",
         "z": "",
         "name": "Database",
@@ -69,17 +151,17 @@
         "order": 2
     },
     {
-        "id": "a6b16e9c.62964",
+        "id": "cc10e938.342c08",
         "type": "ui_group",
         "z": "",
         "name": "aktuelle Daten",
-        "tab": "2b8369e6.0695e6",
+        "tab": "4c2cb675.22cc58",
         "order": 3,
         "disp": true,
         "width": "18"
     },
     {
-        "id": "29478cd0.7837c4",
+        "id": "1a57e085.8db03f",
         "type": "serial-port",
         "z": "",
         "serialport": "/dev/ttyAMA0",
@@ -93,7 +175,7 @@
         "addchar": false
     },
     {
-        "id": "2bc16ee4.a39152",
+        "id": "61a653aa.607b7c",
         "type": "serial-port",
         "z": "",
         "serialport": "/dev/ttyAMA0",
@@ -107,7 +189,7 @@
         "addchar": false
     },
     {
-        "id": "b24110fa.4b1fb",
+        "id": "74a29015.2cafa",
         "type": "serial-port",
         "z": "",
         "serialport": "/dev/ttyUSB0",
@@ -121,55 +203,55 @@
         "addchar": false
     },
     {
-        "id": "f677a085.1f27",
+        "id": "10f4bc2d.b9c834",
         "type": "ui_group",
         "z": "",
         "name": "Gauge",
-        "tab": "ae1bacef.35837",
+        "tab": "251aa0ae.c1b0e",
         "order": 2,
         "disp": true,
         "width": "6"
     },
     {
-        "id": "ae1bacef.35837",
+        "id": "251aa0ae.c1b0e",
         "type": "ui_tab",
         "z": "",
         "name": "Restore",
         "icon": "dashboard"
     },
     {
-        "id": "4a4f5dc9.eedca4",
+        "id": "6c6668c7.c4f718",
         "type": "ui_group",
         "z": "",
         "name": "Gauge",
-        "tab": "b25a8dcb.65a49",
+        "tab": "715b3bc8.948b14",
         "order": 2,
         "disp": true,
         "width": "6"
     },
     {
-        "id": "b25a8dcb.65a49",
+        "id": "715b3bc8.948b14",
         "type": "ui_tab",
         "z": "",
         "name": "Restore",
         "icon": "dashboard"
     },
     {
-        "id": "c922d474.10b1b8",
+        "id": "88e35b00.a73af8",
         "type": "ui_group",
         "z": "",
         "name": "Tagesdaten",
-        "tab": "2b8369e6.0695e6",
+        "tab": "4c2cb675.22cc58",
         "order": 2,
         "disp": true,
         "width": "12"
     },
     {
-        "id": "bcfada5d.3f5ef8",
+        "id": "7b2d2942.6d5928",
         "type": "ui_button",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "get_serial",
-        "group": "ff3a9e64.3083",
+        "group": "d6509987.c55068",
         "order": 1,
         "width": "3",
         "height": "1",
@@ -184,15 +266,15 @@
         "y": 611,
         "wires": [
             [
-                "351b3901.6902e6"
+                "477cb47c.21ff2c"
             ]
         ]
     },
     {
-        "id": "44832dfb.4f0f04",
+        "id": "f0054e03.6dcdb",
         "type": "ui_text",
-        "z": "ef2e3d60.bc774",
-        "group": "ff3a9e64.3083",
+        "z": "46efba90.c91554",
+        "group": "d6509987.c55068",
         "order": 2,
         "width": 0,
         "height": 0,
@@ -205,9 +287,9 @@
         "wires": []
     },
     {
-        "id": "fc40db3d.e0dd08",
+        "id": "25703c67.d90794",
         "type": "inject",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
         "topic": "Online_data",
         "payload": "true",
@@ -219,39 +301,39 @@
         "y": 727,
         "wires": [
             [
-                "e992325e.c0c1"
+                "9e018990.a5d328"
             ]
         ]
     },
     {
-        "id": "6e6e45f6.edeebc",
+        "id": "5c4ad855.b06528",
         "type": "serial out",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "serial",
-        "serial": "2bc16ee4.a39152",
+        "serial": "61a653aa.607b7c",
         "x": 824,
         "y": 1001,
         "wires": []
     },
     {
-        "id": "946aa7c7.c41ed8",
+        "id": "7dab5d6f.7099f4",
         "type": "serial in",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "serial",
-        "serial": "2bc16ee4.a39152",
+        "serial": "61a653aa.607b7c",
         "x": 422,
         "y": 1019,
         "wires": [
             [
-                "b9b76688.542f78",
-                "70621311.470c0c"
+                "eccbb843.ed7198",
+                "2957c431.31a22c"
             ]
         ]
     },
     {
-        "id": "da6c823f.5dee1",
+        "id": "89028d26.98c31",
         "type": "inject",
-        "z": "11a2825f.b962ae",
+        "z": "3a75e211.4930ee",
         "name": "Force",
         "topic": "",
         "payload": "",
@@ -263,14 +345,14 @@
         "y": 345,
         "wires": [
             [
-                "fe7895ae.ae1b88"
+                "f85fb505.488608"
             ]
         ]
     },
     {
-        "id": "c6793ffe.9c516",
+        "id": "66c2713f.d59cd",
         "type": "debug",
-        "z": "11a2825f.b962ae",
+        "z": "3a75e211.4930ee",
         "name": "output",
         "active": true,
         "console": "false",
@@ -280,9 +362,9 @@
         "wires": []
     },
     {
-        "id": "5a8f70dd.76657",
+        "id": "dffb940d.3d2b08",
         "type": "function",
-        "z": "11a2825f.b962ae",
+        "z": "3a75e211.4930ee",
         "name": "timeConvert",
         "func": "if ( !msg.timestamp ) msg.timestamp = Math.round(+new Date());\n\nvar dt = new Date(msg.timestamp);\nvar msg = {\n\t'month':\tdt.getMonth() + 1,\n\t'day':\t\tdt.getDate(),\n\t'year':\t\tdt.getFullYear(),\n\t'hours':\tdt.getHours(),\n\t'mins':\t\tdt.getMinutes(),\n\t'secs':\tdt.getSeconds()\n}\n\nreturn msg;",
         "outputs": 1,
@@ -291,14 +373,14 @@
         "y": 273,
         "wires": [
             [
-                "c6793ffe.9c516"
+                "66c2713f.d59cd"
             ]
         ]
     },
     {
-        "id": "fe7895ae.ae1b88",
+        "id": "f85fb505.488608",
         "type": "function",
-        "z": "11a2825f.b962ae",
+        "z": "3a75e211.4930ee",
         "name": "set timestamp",
         "func": "msg.timestamp=1376763133 * 1000;\nreturn msg;",
         "outputs": 1,
@@ -306,14 +388,14 @@
         "y": 345,
         "wires": [
             [
-                "5a8f70dd.76657"
+                "dffb940d.3d2b08"
             ]
         ]
     },
     {
-        "id": "1036b4d.487fd4b",
+        "id": "a3a37f1b.14a7",
         "type": "inject",
-        "z": "11a2825f.b962ae",
+        "z": "3a75e211.4930ee",
         "name": "Force",
         "topic": "",
         "payload": "",
@@ -325,14 +407,14 @@
         "y": 273,
         "wires": [
             [
-                "5a8f70dd.76657"
+                "dffb940d.3d2b08"
             ]
         ]
     },
     {
-        "id": "299849ba.f042d6",
+        "id": "6d0ef27a.9aea5c",
         "type": "debug",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "serial_out",
         "active": false,
         "console": "false",
@@ -342,11 +424,11 @@
         "wires": []
     },
     {
-        "id": "ae9cbce4.48f2a",
+        "id": "45b89d04.9cb384",
         "type": "ui_chart",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
-        "group": "a6b16e9c.62964",
+        "group": "cc10e938.342c08",
         "order": 1,
         "width": "18",
         "height": "6",
@@ -366,17 +448,17 @@
         "y": 804,
         "wires": [
             [
-                "602ab448.53981c"
+                "62297c74.f920a4"
             ],
             [
-                "602ab448.53981c"
+                "62297c74.f920a4"
             ]
         ]
     },
     {
-        "id": "e992325e.c0c1",
+        "id": "9e018990.a5d328",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "Process Online data",
         "func": "// initialise the counter to 0 if it doesn't exist already\nvar count = context.get('count')||0;\n// make it part of the outgoing msg object\nmsg.count = count;\n\n// states: 0 = none, 2 = online, 3 = monthly, 4 = yearly\n\n\nvar db_msg = {payload:\"\"};\nvar msg_ser_out = {payload:\"\"};\n\n\nif (msg.topic === \"Online_data\" )  // Relevant for this function\n{\n    if (msg.payload === true)  // trigger signal\n    {\n        count = 1;\n        context.set('count', count);\n        msg_ser_out.payload = Buffer([0x00, 0x01, 0x02, 0x01, 0x04]);\n        msg_ser_out.topic = \"Online_data\";\n        return [null, msg_ser_out];\n    }\n    else // payload with buffer data\n    {\n        msg_ser_out.topic = \"Online_data\";\n        if (count === 1)\n        {\n            db_msg.payload = msg.payload;\n            db_msg.topic = \"Online_data1\";\n            msg_ser_out.payload = Buffer([0x00, 0x01, 0x02, 0x02, 0x05]);\n            count +=1;\n        }\n        else if (count === 2)\n        {\n            db_msg.payload = msg.payload;\n            db_msg.topic = \"Online_data2\";\n            msg_ser_out.payload = Buffer([0x00, 0x01, 0x02, 0x03, 0x06]);\n            count +=1;\n        }\n        else if (count === 3)\n        {\n            db_msg.payload = msg.payload;\n            db_msg.topic = \"Online_data3\";\n            msg_ser_out.payload = Buffer([0x00, 0x01, 0x02, 0xff, 0x02]);\n            count +=1;\n        }\n        else if (count === 4)\n        {\n            db_msg.payload = msg.payload;\n            db_msg.topic = \"Online_data_overall\";\n            count = 0;\n            return [db_msg, null];\n        }\n        else // should not occur\n        {\n            // do nothing\n        }\n        context.set('count', count);\n        \n        // if received data is not the last one\n        return [db_msg, msg_ser_out];\n\n    }\n\n}\nelse // not relevant -> another query\n{\n    // do nothing\n}\n",
         "outputs": "2",
@@ -385,17 +467,17 @@
         "y": 765,
         "wires": [
             [
-                "6d7ed880.690528"
+                "f8d06334.46215"
             ],
             [
-                "6d34ac42.85fa94"
+                "35808314.d50abc"
             ]
         ]
     },
     {
-        "id": "6d7ed880.690528",
+        "id": "f8d06334.46215",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "write online data",
         "func": "if (msg.topic === \"Online_data1\" || msg.topic === \"Online_data2\" || msg.topic === \"Online_data3\")\n{\n    var buffer = msg.payload;\n    // convert data\n    var udc = buffer[0] * 2.8 + 200;\n    var idc = buffer[1] * 0.08;\n    var uac = buffer[2] + 100;\n    var iac = buffer[3] * 0.12;\n    var temp = buffer[4] - 40;  // Temperature\n    var s = buffer[5] * 6;      // radiation\n    var pdc = udc * idc;\n    var pac = uac * iac;\n    var wd = (buffer[6] * 256 + buffer[7]) *10 / 1000; // Tagesertrag kWh\n    var aux = buffer[11] & 0xC5;\n    var overflow = aux>>6 | (aux&4)<<1 | (aux&1)<<2;\n    var wtot = overflow * 65536 + buffer[8] * 256 + buffer[9];     // Gesamtertrag kWh\n    var error = buffer[10];\n    var data_string = \"'\" + udc + \"', '\" + idc + \"', '\" + uac + \"', '\" + iac + \"', '\" + pdc + \"', '\" + pac + \"', '\" + wd + \"', '\" + wtot + \"', '\" + error + \"'\";\n    var db_msg = {topic: \"\"};\n    db_msg.topic = \"INSERT INTO `\" + msg.topic + \"`(`U_dc`, `I_dc`, `U_ac`, `I_ac`, `P_dc`, `P_ac`, `Tagesertrag`, `Gesamtertrag`, `Fehlercode`) VALUES (\" + data_string + \")\";\n\n    return [db_msg, null];\n}\nelse if (msg.topic === \"Online_data_overall\")\n{\n    var buffer = msg.payload;\n    // convert data\n    var pdc = (buffer[0] * 256 + buffer[1])/1000;   // kW\n    var pac = (buffer[2] * 256 + buffer[3])/1000;   // kW\n    var temp = 0;\n    var radi = 0;\n    if (buffer[4] === 1) // no temperature sensor\n    {\n        temp = -40;\n    }\n    else \n    {\n        temp = buffer[4] - 40; // °C\n    }\n    if (buffer[5] === 1) // no radiation sensor\n    {\n        radi = 0;\n    }\n    else \n    {\n        radi = buffer[5] * 6;   // W/m^2\n    }\n    var wd = (buffer[6] * 256 + buffer[7]) * 10 / 1000; // Tagesertrag kWh\n    var aux = buffer[11] & 0xC5;\n    var overflow = aux>>6 | (aux&4)<<1 | (aux&1)<<2;\n    var wtot = overflow * 65536 + buffer[8] * 256 + buffer[9];     // Gesamtertrag kWh\n    var error = buffer[10];\n    // create database msg\n    var data_string = \"'\" + pdc + \"', '\" + pac + \"', '\" + temp + \"', '\" + radi + \"', '\" + wd + \"', '\" + wtot + \"', '\" + error + \"'\";\n    var db_msg = {topic: \"\"};\n    db_msg.topic = \"INSERT INTO `\" + msg.topic + \"`(`P_dc`, `P_ac`, `Temperatur`, `Radiation`, `Tagesertrag`, `Gesamtertrag`, `Fehlercode`) VALUES (\" + data_string + \")\";\n    \n    \n    var plot_pac = {payload: pac};\n    plot_pac.topic = \"pac\";\n    var print_wd = {payload: \"\"+ wd + \" kWh\"};\n    print_wd.topic = \"wd\";\n    var print_wtot = {payload: \"\" + wtot + \" kWh\"};\n    print_wtot.topic = \"wtot\";\n    var print_error = {payload: error};\n    print_error.topic = \"error\";\n    return [db_msg, [plot_pac, print_wd, print_wtot, print_error]];\n}\n\n",
         "outputs": "2",
@@ -404,19 +486,19 @@
         "y": 760,
         "wires": [
             [
-                "dcf6b56c.1093a8",
-                "56e97ec.933438"
+                "ae4d7923.72c7a8",
+                "facfc718.98d5b8"
             ],
             [
-                "b37b552f.a301d8",
-                "e9b7653c.88cd98"
+                "c7a2ec36.3ad84",
+                "86febc85.78f62"
             ]
         ]
     },
     {
-        "id": "dcf6b56c.1093a8",
+        "id": "ae4d7923.72c7a8",
         "type": "debug",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "database_input",
         "active": false,
         "console": "false",
@@ -426,9 +508,9 @@
         "wires": []
     },
     {
-        "id": "b9b76688.542f78",
+        "id": "eccbb843.ed7198",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "ser_com",
         "func": "// manages serial communication\n// checks letgth of command and add checksum if needed\n// checks checksum of incoming data\n\n// initialise the topic to 0 if it doesn't exist already\nvar topic = context.get('topic')||0;\n\nfunction calculate_CS(buffer) {\n  CS = 0;\n  for (var i = 0; i<buffer.length; i++)\n  {\n      CS += buffer[i];\n  }\n  CS = CS % 256;\n  return CS;\n}\n\nif (msg.topic !== undefined) // command is written out\n{\n    topic = msg.topic;\n    // store the value topic back\n    context.set('topic',topic);\n    if (msg.payload.length === 5)\n    {\n        var cmd = {payload: msg.payload};\n        return [null, cmd];\n    }\n    else if (msg.payload.length === 4)\n    {\n        // add checksum\n        var CS = Buffer([calculate_CS(msg.payload)]);\n        //cmd_out = Buffer([msg.payload[0], msg.payload[1], msg.payload[2], msg.payload[3], CS])\n        cmd_out = Buffer.concat([msg.payload, CS], (msg.payload.length + 1));\n        var cmd = {payload: cmd_out};\n        return[null, cmd];\n        \n    }\n    else // no valid command\n    {\n        var cmd = {payload: 'error'};\n        return [cmd, null];\n    }\n    \n    \n}\nelse // receiving data from serial port\n{\n    topic = context.get('topic');\n    var input = msg.payload;\n    if (input.length === 13) // length of input is correct\n    {\n        var CS = calculate_CS(input.slice(0, 12));\n        if(CS !== input[12])\n        {\n            return[null, null];\n        }\n        var ser_data = {payload: input.slice(0, 12)};\n        ser_data.topic = topic;\n        return[ser_data, null];\n    }\n    else // input length is wrong\n    {\n        var cmd = {payload: 'length_error'};\n        return[cmd, null];\n    }\n    \n}",
         "outputs": "2",
@@ -437,23 +519,23 @@
         "y": 993,
         "wires": [
             [
-                "e992325e.c0c1",
-                "8d2a7cdb.b58b7",
-                "351b3901.6902e6",
-                "13a3a0e5.0d031f",
-                "51df6859.3c31c8",
-                "bbd7da95.ca5948"
+                "9e018990.a5d328",
+                "26690793.3c4438",
+                "477cb47c.21ff2c",
+                "72393470.15568c",
+                "8e8e67e2.3b3cb8",
+                "3407f58c.60f5ca"
             ],
             [
-                "6e6e45f6.edeebc",
-                "299849ba.f042d6"
+                "5c4ad855.b06528",
+                "6d0ef27a.9aea5c"
             ]
         ]
     },
     {
-        "id": "50ea41b3.c33ab",
+        "id": "2311aa32.307e16",
         "type": "inject",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
         "topic": "",
         "payload": "true",
@@ -465,14 +547,14 @@
         "y": 503,
         "wires": [
             [
-                "a9e25efa.5135e"
+                "d13b964a.0ffb38"
             ]
         ]
     },
     {
-        "id": "a9e25efa.5135e",
+        "id": "d13b964a.0ffb38",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
         "func": "msg.topic = \"SELECT * FROM Fehlerspeicher ORDER BY Zeitstempel DESC LIMIT 1\"\n\nreturn msg;",
         "outputs": 1,
@@ -481,14 +563,14 @@
         "y": 502,
         "wires": [
             [
-                "fcb0e8d7.5c3df8"
+                "5f9d1092.95474"
             ]
         ]
     },
     {
-        "id": "6d34ac42.85fa94",
+        "id": "35808314.d50abc",
         "type": "delay",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "Queue",
         "pauseType": "rate",
         "timeout": "5",
@@ -504,14 +586,14 @@
         "y": 964,
         "wires": [
             [
-                "b9b76688.542f78"
+                "eccbb843.ed7198"
             ]
         ]
     },
     {
-        "id": "8d2a7cdb.b58b7",
+        "id": "26690793.3c4438",
         "type": "debug",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "serial_data",
         "active": false,
         "console": "false",
@@ -521,9 +603,9 @@
         "wires": []
     },
     {
-        "id": "70621311.470c0c",
+        "id": "2957c431.31a22c",
         "type": "debug",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "serial_in",
         "active": false,
         "console": "false",
@@ -533,9 +615,9 @@
         "wires": []
     },
     {
-        "id": "351b3901.6902e6",
+        "id": "477cb47c.21ff2c",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "Process serial number",
         "func": "var db_msg = {payload:\"\"};\nvar msg_ser_out = {payload:\"\"};\n\n\nif (msg.topic === \"Serial_number\" )  // Relevant for this function\n{\n    if (msg.payload === true)  // trigger signal\n    {\n        msg_ser_out.payload = Buffer([0x00, 0x01, 0x08, 0x01]);\n        msg_ser_out.topic = \"Serial_number\";\n        return [null, msg_ser_out];\n    }\n    else // payload with buffer data\n    {\n        db_msg.payload = msg.payload;\n        db_msg.topic = \"serial_number\"\n        return [db_msg, null];\n    }\n\n}\nelse // not relevant -> another query\n{\n    // do nothing\n}\n",
         "outputs": "2",
@@ -544,17 +626,17 @@
         "y": 654,
         "wires": [
             [
-                "f087453c.a1e658"
+                "c41e2fd4.90828"
             ],
             [
-                "6d34ac42.85fa94"
+                "35808314.d50abc"
             ]
         ]
     },
     {
-        "id": "87699ef0.e481d",
+        "id": "1be3a602.fbc83a",
         "type": "inject",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
         "topic": "Serial_number",
         "payload": "true",
@@ -566,14 +648,14 @@
         "y": 654,
         "wires": [
             [
-                "351b3901.6902e6"
+                "477cb47c.21ff2c"
             ]
         ]
     },
     {
-        "id": "f087453c.a1e658",
+        "id": "c41e2fd4.90828",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "print serial number",
         "func": "if (msg.topic === \"serial_number\") // should be always the case\n{\n    var text = msg.payload.toString();\n    msg = {payload: text};\n    return msg;\n}\n",
         "outputs": 1,
@@ -582,14 +664,14 @@
         "y": 646,
         "wires": [
             [
-                "44832dfb.4f0f04"
+                "f0054e03.6dcdb"
             ]
         ]
     },
     {
-        "id": "9d7ba6f.1a7c358",
+        "id": "3048fcec.a33434",
         "type": "comment",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "Test for DB output",
         "info": "",
         "x": 680.5,
@@ -597,10 +679,10 @@
         "wires": []
     },
     {
-        "id": "56e97ec.933438",
+        "id": "facfc718.98d5b8",
         "type": "mysql",
-        "z": "ef2e3d60.bc774",
-        "mydb": "448c7b52.637e04",
+        "z": "46efba90.c91554",
+        "mydb": "a1a56ac3.5e8868",
         "name": "Datenbank",
         "x": 1208,
         "y": 704,
@@ -609,9 +691,9 @@
         ]
     },
     {
-        "id": "bdef5e92.03634",
+        "id": "4bb93702.905888",
         "type": "inject",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
         "topic": "Online_data",
         "payload": "true",
@@ -623,14 +705,14 @@
         "y": 777,
         "wires": [
             [
-                "e992325e.c0c1"
+                "9e018990.a5d328"
             ]
         ]
     },
     {
-        "id": "13a3a0e5.0d031f",
+        "id": "72393470.15568c",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "Process current time",
         "func": "var data_msg = {payload:\"\"};\nvar msg_ser_out = {payload:\"\"};\n\n\nif (msg.topic === \"Current_time\" )  // Relevant for this function\n{\n    if (msg.payload === true)  // trigger signal\n    {\n        msg_ser_out.payload = Buffer([0x00, 0x01, 0x06, 0x01]);\n        msg_ser_out.topic = \"Current_time\";\n        return [null, msg_ser_out];\n    }\n    else // payload with buffer data\n    {\n        data_msg.payload = msg.payload;\n        data_msg.topic = \"current_time\"\n        return [data_msg, null];\n    }\n\n}\nelse // not relevant -> another query\n{\n    // do nothing\n}\n",
         "outputs": "2",
@@ -639,18 +721,18 @@
         "y": 558,
         "wires": [
             [
-                "c0b021cf.d846d"
+                "ba217d93.e8bf3"
             ],
             [
-                "6d34ac42.85fa94"
+                "35808314.d50abc"
             ]
         ]
     },
     {
-        "id": "c3643226.848c7",
+        "id": "ffdbf263.3b749",
         "type": "ui_text",
-        "z": "ef2e3d60.bc774",
-        "group": "ff3a9e64.3083",
+        "z": "46efba90.c91554",
+        "group": "d6509987.c55068",
         "order": 4,
         "width": 0,
         "height": 0,
@@ -663,9 +745,9 @@
         "wires": []
     },
     {
-        "id": "c0b021cf.d846d",
+        "id": "ba217d93.e8bf3",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "print current time",
         "func": "function pad(n) {\n    if (n<10) // do zero padding\n    {\n        var str = \"0\" + n.toString();\n        return str;\n    }\n    else\n    {\n        return n.toString();\n    }\n}\n\nif (msg.topic === \"current_time\") // should be always the case\n{\n    var buffer = msg.payload;\n    year = 2000 + buffer[0];\n    month = buffer[1];\n    day = buffer[2];\n    hour = buffer[3];\n    minute = buffer[4];\n    var text = pad(day) + \".\" + pad(month) + \".\" + year + \", \" + hour + \":\"+ pad(minute);\n    msg = {payload: text};\n    return msg;\n}\n",
         "outputs": 1,
@@ -674,14 +756,14 @@
         "y": 555,
         "wires": [
             [
-                "c3643226.848c7"
+                "ffdbf263.3b749"
             ]
         ]
     },
     {
-        "id": "182a3dd1.ad1202",
+        "id": "5166de32.30332",
         "type": "inject",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
         "topic": "Current_time",
         "payload": "true",
@@ -693,15 +775,15 @@
         "y": 557,
         "wires": [
             [
-                "13a3a0e5.0d031f"
+                "72393470.15568c"
             ]
         ]
     },
     {
-        "id": "617bece0.4bd8c4",
+        "id": "f312a892.6c33c8",
         "type": "ui_text",
-        "z": "ef2e3d60.bc774",
-        "group": "ff3a9e64.3083",
+        "z": "46efba90.c91554",
+        "group": "d6509987.c55068",
         "order": 5,
         "width": 0,
         "height": 0,
@@ -714,10 +796,10 @@
         "wires": []
     },
     {
-        "id": "eb481f2c.887cb",
+        "id": "b7ce5011.82528",
         "type": "ui_text",
-        "z": "ef2e3d60.bc774",
-        "group": "ff3a9e64.3083",
+        "z": "46efba90.c91554",
+        "group": "d6509987.c55068",
         "order": 6,
         "width": 0,
         "height": 0,
@@ -730,9 +812,9 @@
         "wires": []
     },
     {
-        "id": "81687058.35a47",
+        "id": "23447cc9.94a824",
         "type": "inject",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "every_minute",
         "topic": "sleep",
         "payload": "true",
@@ -744,28 +826,30 @@
         "y": 339,
         "wires": [
             [
-                "51df6859.3c31c8"
+                "8e8e67e2.3b3cb8"
             ]
         ]
     },
     {
-        "id": "b4d7261f.6ad438",
+        "id": "a054aa2a.485928",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "timeConvert",
-        "func": "if ( !msg.timestamp ) msg.timestamp = Math.round(+new Date());\n\nvar dt = new Date(msg.timestamp);\nvar msg = {\n\t'month':\tdt.getMonth() + 1,\n\t'day':\t\tdt.getDate(),\n\t'year':\t\tdt.getFullYear(),\n\t'hours':\tdt.getHours(),\n\t'mins':\t\tdt.getMinutes(),\n\t'secs':\tdt.getSeconds()\n}\n\nreturn msg;",
+        "func": "if ( !msg.timestamp ) msg.timestamp = Math.round(+new Date());\n\nvar dt = new Date(msg.timestamp);\nvar msg = {\n\t'month':\tdt.getMonth() + 1,\n\t'day':\t\tdt.getDate(),\n\t'year':\t\tdt.getFullYear(), \n\t'hours':\tdt.getHours(),\n\t'mins':\t\tdt.getMinutes(),\n\t'secs':\tdt.getSeconds()\n}\nmsg.topic = \"DateTime\"\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 354,
-        "y": 290,
+        "x": 392,
+        "y": 275.99996185302734,
         "wires": [
-            []
+            [
+                "7f39498f.0bd038"
+            ]
         ]
     },
     {
-        "id": "f3628588.b2b368",
+        "id": "60dfe5b8.38ebac",
         "type": "inject",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "Noon",
         "topic": "noon",
         "payload": "",
@@ -780,9 +864,9 @@
         ]
     },
     {
-        "id": "51df6859.3c31c8",
+        "id": "8e8e67e2.3b3cb8",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "Inverter sleeps?",
         "func": "var state_msg = {payload:\"\"};\n// initialise the topic to 0 if it doesn't exist already\nvar count = context.get('count')||0;\n\nif (msg.topic !== \"sleep\" )  // all topic relevant, instead of sleep\n{\n    count = 0;\n}\nelse // reset trigger comes in\n{\n    count += 1;\n}\ncontext.set('count', count);\nif (count > 1)\n{\n    state_msg.payload = \"schläft\";\n}\nelse \n{\n    state_msg.payload = \"ist wach\";\n}\nreturn state_msg;",
         "outputs": "1",
@@ -791,15 +875,15 @@
         "y": 338,
         "wires": [
             [
-                "67058c38.4ffdc4"
+                "77cfd8ac.619578"
             ]
         ]
     },
     {
-        "id": "67058c38.4ffdc4",
+        "id": "77cfd8ac.619578",
         "type": "ui_text",
-        "z": "ef2e3d60.bc774",
-        "group": "ff3a9e64.3083",
+        "z": "46efba90.c91554",
+        "group": "d6509987.c55068",
         "order": 8,
         "width": 0,
         "height": 0,
@@ -812,9 +896,9 @@
         "wires": []
     },
     {
-        "id": "b37b552f.a301d8",
+        "id": "c7a2ec36.3ad84",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "plot online data",
         "func": "if (msg.topic === \"pac\") // ac Power\n{\n    return [msg, null, null, null];\n}\nelse if (msg.topic === \"wd\") // day Wh\n{\n    return [null, msg, null, null];\n}\nelse if (msg.topic === \"wtot\")\n{\n    return [null, null, msg, null];\n}\nelse if (msg.topic === \"error\")\n{\n    var error = msg.payload;\n    var text = \"\";\n    if ((error === 0) || (error === 128))\n    {\n        text = \"keinen Fehler\";\n    }\n    else\n    {\n        text = error;\n    }\n    msg = {payload: text};\n    return [null, null, null, msg];\n}",
         "outputs": "4",
@@ -823,23 +907,23 @@
         "y": 830,
         "wires": [
             [
-                "ae9cbce4.48f2a"
+                "45b89d04.9cb384"
             ],
             [
-                "eb481f2c.887cb"
+                "b7ce5011.82528"
             ],
             [
-                "617bece0.4bd8c4"
+                "f312a892.6c33c8"
             ],
             [
-                "8153df03.4a315"
+                "a54aadd2.bca1"
             ]
         ]
     },
     {
-        "id": "9d32aa97.954ba8",
+        "id": "49e0410a.01835",
         "type": "inject",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
         "topic": "Failure_memory",
         "payload": "true",
@@ -851,14 +935,14 @@
         "y": 436,
         "wires": [
             [
-                "bbd7da95.ca5948"
+                "3407f58c.60f5ca"
             ]
         ]
     },
     {
-        "id": "bbd7da95.ca5948",
+        "id": "3407f58c.60f5ca",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "Process failure memory",
         "func": "var data_msg = {payload:\"\"};\nvar msg_ser_out = {payload:\"\"};\n// initialise the counter to 0 if it doesn't exist already\nvar count = context.get('count')||0;\n\nvar failure_cmd = Buffer([0x00, 0x01, 0x01]);\n\nif (msg.topic === \"Failure_memory\" )  // Relevant for this function\n{\n    if (msg.payload === true)  // trigger signal\n    {\n        count = 0x01;\n        var BN = Buffer([count]);                    // Block number\n        msg_ser_out.payload = Buffer.concat([failure_cmd, BN], (failure_cmd.length + 1));\n        msg_ser_out.topic = \"Failure_memory\";\n        \n        context.set('count', count);\n        return [null, msg_ser_out];\n    }\n    else // payload with buffer data\n    {\n        if (count < 0x32) // write failure_cmd\n        {\n            count +=1;\n            context.set('count', count);\n            var BN = Buffer([count]);                    // Block number\n            msg_ser_out.payload = Buffer.concat([failure_cmd, BN], (failure_cmd.length + 1));\n            msg_ser_out.topic = \"Failure_memory\";\n            \n            data_msg.payload = msg.payload;\n            data_msg.topic = \"failure_memory\";\n            return [data_msg, msg_ser_out];\n        }\n        else  // send last data out\n        {\n            data_msg.payload = msg.payload;\n            data_msg.topic = \"failure_memory\";\n            return [data_msg, null];\n        }\n        \n    }\n\n}\nelse // not relevant -> another query\n{\n    // do nothing\n}\n",
         "outputs": "2",
@@ -867,17 +951,17 @@
         "y": 432,
         "wires": [
             [
-                "ece8718e.485a"
+                "12c9add8.240832"
             ],
             [
-                "6d34ac42.85fa94"
+                "35808314.d50abc"
             ]
         ]
     },
     {
-        "id": "dad26e61.a3324",
+        "id": "6decf517.59f7ec",
         "type": "debug",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "database_input",
         "active": true,
         "console": "false",
@@ -887,9 +971,9 @@
         "wires": []
     },
     {
-        "id": "ece8718e.485a",
+        "id": "12c9add8.240832",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "write failure data",
         "func": "function pad(n) {\n    if (n<10) // do zero padding\n    {\n        var str = \"0\" + n.toString();\n        return str;\n    }\n    else\n    {\n        return n.toString();\n    }\n}\n\nif (msg.topic === \"failure_memory\")\n{\n    var buffer = msg.payload;\n    // convert older data\n    var month = buffer[6];\n    var day = buffer[7];\n    var hour = buffer[8];\n    var minute = buffer[9];\n    var code = buffer[10];\n    var year = 2000 + buffer[11];  \n    \n    var timestring = \"\" + year + \"-\" + pad(month) + \"-\" + pad(day) + \",\" + pad(hour) + \":\" + pad(minute);\n    var data_string = \"'\" + timestring + \"', '\" + code + \"'\";\n    var db_msg = {topic: \"\"};\n    db_msg.topic = \"INSERT INTO `Fehlerspeicher` (`Zeit`, `Fehlercode`) VALUES (\" + data_string + \")\";\n    \n    node.send(db_msg);\n    \n    // convert newer data\n    var month = buffer[0];\n    var day = buffer[1];\n    var hour = buffer[2];\n    var minute = buffer[3];\n    var code = buffer[4];\n    var year = 2000 + buffer[5];  \n    \n    var timestring = \"\" + year + \"-\" + pad(month) + \"-\" + pad(day) + \",\" + pad(hour) + \":\" + pad(minute);\n    var data_string = \"'\" + timestring + \"', '\" + code + \"'\";\n    var db_msg = {topic: \"\"};\n    db_msg.topic = \"INSERT INTO `Fehlerspeicher` (`Zeit`, `Fehlercode`) VALUES (\" + data_string + \")\";\n    \n    return [db_msg];\n}\nelse // do nothing\n{\n    \n}\n\n",
         "outputs": "1",
@@ -898,29 +982,29 @@
         "y": 462,
         "wires": [
             [
-                "fcb0e8d7.5c3df8",
-                "dad26e61.a3324"
+                "5f9d1092.95474",
+                "6decf517.59f7ec"
             ]
         ]
     },
     {
-        "id": "fcb0e8d7.5c3df8",
+        "id": "5f9d1092.95474",
         "type": "mysql",
-        "z": "ef2e3d60.bc774",
-        "mydb": "448c7b52.637e04",
+        "z": "46efba90.c91554",
+        "mydb": "a1a56ac3.5e8868",
         "name": "Datenbank",
         "x": 1132,
         "y": 469,
         "wires": [
             [
-                "943fc306.d2f73"
+                "96104994.a901c8"
             ]
         ]
     },
     {
-        "id": "943fc306.d2f73",
+        "id": "96104994.a901c8",
         "type": "debug",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "database_output",
         "active": false,
         "console": "false",
@@ -930,9 +1014,9 @@
         "wires": []
     },
     {
-        "id": "602ab448.53981c",
+        "id": "62297c74.f920a4",
         "type": "debug",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "chart_out",
         "active": false,
         "console": "false",
@@ -942,10 +1026,10 @@
         "wires": []
     },
     {
-        "id": "8153df03.4a315",
+        "id": "a54aadd2.bca1",
         "type": "ui_text",
-        "z": "ef2e3d60.bc774",
-        "group": "ff3a9e64.3083",
+        "z": "46efba90.c91554",
+        "group": "d6509987.c55068",
         "order": 7,
         "width": 0,
         "height": 0,
@@ -958,9 +1042,9 @@
         "wires": []
     },
     {
-        "id": "e9b7653c.88cd98",
+        "id": "86febc85.78f62",
         "type": "debug",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
         "active": false,
         "console": "false",
@@ -970,24 +1054,24 @@
         "wires": []
     },
     {
-        "id": "65217ece.574ee",
+        "id": "f8d185b0.746578",
         "type": "mysql",
-        "z": "ef2e3d60.bc774",
-        "mydb": "448c7b52.637e04",
+        "z": "46efba90.c91554",
+        "mydb": "a1a56ac3.5e8868",
         "name": "Datenbank",
         "x": 675,
         "y": 1222,
         "wires": [
             [
-                "1adec3de.bb094c",
-                "9a2038e5.e517e8"
+                "17288900.03bb47",
+                "3e89f8e.8de7b08"
             ]
         ]
     },
     {
-        "id": "92a3baf6.62bb48",
+        "id": "90a479c3.6dff18",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
         "func": "msg.topic = \"SELECT * FROM Fehlerspeicher WHERE STR_TO_DATE(Zeit, '%Y-%m-%d,%H:%i') BETWEEN '2016-02-01 00:00:00' AND '2016-03-02 00:00:00'\";\nreturn msg;",
         "outputs": 1,
@@ -996,15 +1080,15 @@
         "y": 1222,
         "wires": [
             [
-                "65217ece.574ee",
-                "1adec3de.bb094c"
+                "f8d185b0.746578",
+                "17288900.03bb47"
             ]
         ]
     },
     {
-        "id": "1adec3de.bb094c",
+        "id": "17288900.03bb47",
         "type": "debug",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
         "active": true,
         "console": "false",
@@ -1014,9 +1098,9 @@
         "wires": []
     },
     {
-        "id": "2f5eaec.98e5752",
+        "id": "6a10c5d0.b88aac",
         "type": "inject",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
         "topic": "",
         "payload": "true",
@@ -1028,16 +1112,16 @@
         "y": 1220,
         "wires": [
             [
-                "92a3baf6.62bb48"
+                "90a479c3.6dff18"
             ]
         ]
     },
     {
-        "id": "1236b16e.f51a9f",
+        "id": "ca378cdd.8b019",
         "type": "ui_button",
-        "z": "cba188be.285ea8",
+        "z": "b9ee919e.468a1",
         "name": "",
-        "group": "4a4f5dc9.eedca4",
+        "group": "6c6668c7.c4f718",
         "order": 2,
         "width": "2",
         "height": "1",
@@ -1052,16 +1136,16 @@
         "y": 269,
         "wires": [
             [
-                "99685c13.9295f"
+                "881072f0.c7d9e"
             ]
         ]
     },
     {
-        "id": "c6340900.b567c8",
+        "id": "f0950f24.9d8ce",
         "type": "ui_button",
-        "z": "cba188be.285ea8",
+        "z": "b9ee919e.468a1",
         "name": "",
-        "group": "4a4f5dc9.eedca4",
+        "group": "6c6668c7.c4f718",
         "order": 4,
         "width": "2",
         "height": "1",
@@ -1076,14 +1160,14 @@
         "y": 568,
         "wires": [
             [
-                "6935777b.e5ea98"
+                "1ac5d289.d72b0d"
             ]
         ]
     },
     {
-        "id": "99685c13.9295f",
+        "id": "881072f0.c7d9e",
         "type": "random",
-        "z": "cba188be.285ea8",
+        "z": "b9ee919e.468a1",
         "name": "",
         "low": "0",
         "high": "10",
@@ -1092,16 +1176,16 @@
         "y": 269,
         "wires": [
             [
-                "94f29587.e46438"
+                "d4778ee.044d17"
             ]
         ]
     },
     {
-        "id": "94f29587.e46438",
+        "id": "d4778ee.044d17",
         "type": "ui_chart",
-        "z": "cba188be.285ea8",
+        "z": "b9ee919e.468a1",
         "name": "",
-        "group": "4a4f5dc9.eedca4",
+        "group": "6c6668c7.c4f718",
         "order": 1,
         "width": 0,
         "height": 0,
@@ -1121,15 +1205,15 @@
         "y": 269,
         "wires": [
             [
-                "f8f14d38.d77bf"
+                "62177ea7.e168a"
             ],
             []
         ]
     },
     {
-        "id": "c58843e5.24a2a",
+        "id": "737321ec.1ce46",
         "type": "file",
-        "z": "cba188be.285ea8",
+        "z": "b9ee919e.468a1",
         "name": "",
         "filename": "/tmp/chart.log",
         "appendNewline": true,
@@ -1140,9 +1224,9 @@
         "wires": []
     },
     {
-        "id": "6935777b.e5ea98",
+        "id": "1ac5d289.d72b0d",
         "type": "file in",
-        "z": "cba188be.285ea8",
+        "z": "b9ee919e.468a1",
         "name": "",
         "filename": "/tmp/chart.log",
         "format": "utf8",
@@ -1150,42 +1234,42 @@
         "y": 569,
         "wires": [
             [
-                "b1ad702.e3f169",
-                "b39a1515.5e4d08"
+                "71ad96b0.e81c18",
+                "af535f7f.d404b"
             ]
         ]
     },
     {
-        "id": "f8f14d38.d77bf",
+        "id": "62177ea7.e168a",
         "type": "json",
-        "z": "cba188be.285ea8",
+        "z": "b9ee919e.468a1",
         "name": "",
         "x": 799,
         "y": 263,
         "wires": [
             [
-                "5d05232f.d1cfdc"
+                "f410d872.b08f48"
             ]
         ]
     },
     {
-        "id": "b1ad702.e3f169",
+        "id": "71ad96b0.e81c18",
         "type": "json",
-        "z": "cba188be.285ea8",
+        "z": "b9ee919e.468a1",
         "name": "",
         "x": 662,
         "y": 569,
         "wires": [
             [
-                "94f29587.e46438",
-                "b39a1515.5e4d08"
+                "d4778ee.044d17",
+                "af535f7f.d404b"
             ]
         ]
     },
     {
-        "id": "5d05232f.d1cfdc",
+        "id": "f410d872.b08f48",
         "type": "function",
-        "z": "cba188be.285ea8",
+        "z": "b9ee919e.468a1",
         "name": "",
         "func": "if (msg.topic === \"save\") {\n    msg.payload = context.last;\n    return msg;\n}\nelse {\n    context.last = msg.payload;\n}\nreturn null;",
         "outputs": 1,
@@ -1194,17 +1278,17 @@
         "y": 429,
         "wires": [
             [
-                "c58843e5.24a2a",
-                "b39a1515.5e4d08"
+                "737321ec.1ce46",
+                "af535f7f.d404b"
             ]
         ]
     },
     {
-        "id": "886e6a95.521e38",
+        "id": "e30ab33d.677fd",
         "type": "ui_button",
-        "z": "cba188be.285ea8",
+        "z": "b9ee919e.468a1",
         "name": "",
-        "group": "4a4f5dc9.eedca4",
+        "group": "6c6668c7.c4f718",
         "order": 3,
         "width": "2",
         "height": "1",
@@ -1219,14 +1303,14 @@
         "y": 429,
         "wires": [
             [
-                "5d05232f.d1cfdc"
+                "f410d872.b08f48"
             ]
         ]
     },
     {
-        "id": "b39a1515.5e4d08",
+        "id": "af535f7f.d404b",
         "type": "debug",
-        "z": "cba188be.285ea8",
+        "z": "b9ee919e.468a1",
         "name": "",
         "active": true,
         "console": "false",
@@ -1236,9 +1320,9 @@
         "wires": []
     },
     {
-        "id": "9a2038e5.e517e8",
+        "id": "3e89f8e.8de7b08",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
         "func": "var test = msg.payload[0]['Zeit'];\nvar length = msg.payload.length;\nvar array = Array(length);\nfor (var i = 0; i<length; i++)\n{\n    var timestamp = msg.payload[i]['Zeitstempel']\n    var zeit = msg.payload[i]['Zeit'];\n    //array[i] = Date(zeit).getTime();\n    var code = msg.payload[i]['Fehlercode'];\n    array[i] = [Date.parse(timestamp), Date.parse(zeit), code];\n}\nvar msg = {payload: array};\nreturn msg;",
         "outputs": 1,
@@ -1247,29 +1331,29 @@
         "y": 1224,
         "wires": [
             [
-                "1adec3de.bb094c"
+                "17288900.03bb47"
             ]
         ]
     },
     {
-        "id": "5406b858.babb68",
+        "id": "10f9aa83.65db65",
         "type": "mysql",
-        "z": "ef2e3d60.bc774",
-        "mydb": "448c7b52.637e04",
+        "z": "46efba90.c91554",
+        "mydb": "a1a56ac3.5e8868",
         "name": "Datenbank",
         "x": 708,
         "y": 1453,
         "wires": [
             [
-                "56daba40.77efbc",
-                "31f2d522.3d47da"
+                "ad930dc9.01b21",
+                "862a976c.9bbb58"
             ]
         ]
     },
     {
-        "id": "ca4d5404.7a2b5",
+        "id": "e1ec37a0.0187d8",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "Select from DB",
         "func": "var day_start = msg.day_choosed.substring(0,10) + \" 00:00:00\"\nvar day_end =  msg.day_choosed.substring(0,10) + \" 23:59:00\"\n\nmsg.topic = \"SELECT * \" +\n        \"FROM Online_data_overall \" +\n        \"WHERE STR_TO_DATE(Zeitstempel, '%Y-%m-%d %H:%i:%s') \" + \n        \"BETWEEN '\" + day_start + \"' AND '\" + day_end + \"'\";\nreturn msg;",
         "outputs": 1,
@@ -1278,15 +1362,15 @@
         "y": 1448,
         "wires": [
             [
-                "5406b858.babb68",
-                "56daba40.77efbc"
+                "10f9aa83.65db65",
+                "ad930dc9.01b21"
             ]
         ]
     },
     {
-        "id": "56daba40.77efbc",
+        "id": "ad930dc9.01b21",
         "type": "debug",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
         "active": false,
         "console": "false",
@@ -1296,9 +1380,9 @@
         "wires": []
     },
     {
-        "id": "31f2d522.3d47da",
+        "id": "862a976c.9bbb58",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "Filter data",
         "func": "var length = msg.payload.length;\nvar array = Array(length);\nvar day_kWh = 0;\n// get Timezone offset \nvar offset = new Date().getTimezoneOffset(); // in minutes\nfor (var i = 0; i<length; i++)\n{\n    var timestamp = msg.payload[i]['Zeitstempel']\n    var pac = msg.payload[i]['P_ac'];\n    array[i] = [Date.parse(timestamp) + offset*60000, pac];\n    \n    // maximum of Tagesertrag\n    var aux = msg.payload[i]['Tagesertrag'];\n    if (aux >= day_kWh)\n    {\n        day_kWh = aux;\n    }\n}\n\nvar msg = {payload: array};\nvar msg_kWh = {payload: \"\" + day_kWh + \" kWh\"};\nreturn [msg_kWh, msg];",
         "outputs": "2",
@@ -1307,31 +1391,31 @@
         "y": 1468,
         "wires": [
             [
-                "4c9f9831.b2b158",
-                "623b0ea7.920d2"
+                "8baea022.416f9",
+                "8b2feeec.7f34c"
             ],
             [
-                "7ac4c882.90ff5"
+                "72d74aca.fa40f4"
             ]
         ]
     },
     {
-        "id": "7ac4c882.90ff5",
+        "id": "72d74aca.fa40f4",
         "type": "json",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
         "x": 966,
         "y": 1526,
         "wires": [
             [
-                "b87b11fa.c938"
+                "81fc211a.1c3d1"
             ]
         ]
     },
     {
-        "id": "b87b11fa.c938",
+        "id": "81fc211a.1c3d1",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "add cmd for chart",
         "func": "msg.payload = \"[{\\\"key\\\":\\\"P_ac\\\",\\\"values\\\":\" + msg.payload + \"}]\";\nreturn msg;",
         "outputs": 1,
@@ -1340,45 +1424,59 @@
         "y": 1594,
         "wires": [
             [
-                "bfd1ba19.de98c"
+                "1aa1abeb.94b264"
             ]
         ]
     },
     {
-        "id": "bfd1ba19.de98c",
+        "id": "1aa1abeb.94b264",
         "type": "json",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
         "x": 1033,
         "y": 1662,
         "wires": [
             [
-                "56daba40.77efbc",
-                "7cc168fe.2f5498"
+                "ad930dc9.01b21",
+                "4c24ac77.da34d4"
             ]
         ]
     },
     {
-        "id": "7cc168fe.2f5498",
+        "id": "4c24ac77.da34d4",
         "type": "ui_chart",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "plot_database",
-        "group": "c922d474.10b1b8",
+        "group": "88e35b00.a73af8",
         "order": 6,
         "width": "18",
         "height": "5",
         "label": "Datenbank",
         "chartType": "line",
         "legend": "true",
-        "xformat": "HH:mm:ss",
+        "xformat": "HH:mm",
         "interpolate": "linear",
         "nodata": "keine Daten verfügbar :(",
+        "dot": false,
         "ymin": "",
         "ymax": "",
         "removeOlder": "12",
         "removeOlderPoints": "",
         "removeOlderUnit": "3600",
         "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": true,
         "x": 1204,
         "y": 1655,
         "wires": [
@@ -1387,29 +1485,29 @@
         ]
     },
     {
-        "id": "ee629987.6d50f8",
+        "id": "34d82408.18347c",
         "type": "function",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "set day",
-        "func": "function pad(n) {\n    if (n<10) // do zero padding\n    {\n        var str = \"0\" + n.toString();\n        return str;\n    }\n    else\n    {\n        return n.toString();\n    }\n}\n\n// initialise the day_choosed to actual date if it doesn't exist already\nvar day_choosed = context.get('day_choosed')||new Date(); // \n\n\nif (msg.topic == \"today\")\n{\n    day_choosed = new Date();\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == \"yesterday\")\n{\n    day_choosed.setDate(day_choosed.getDate() - 1);\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == \"tomorrow\")\n{\n    day_choosed.setDate(day_choosed.getDate() + 1);\n    if (day_choosed > new Date())\n    {\n        day_choosed = new Date();\n    }\n    context.set('day_choosed', day_choosed);\n}\n\n// convert into calendar time\nvar day_string = day_choosed.getFullYear() + \"-\" + \n                pad(day_choosed.getMonth() + 1) + \"-\" + \n                pad(day_choosed.getDate());\n\n\n//msg.payload = day_string;\n// make it part of the outgoing msg object\nmsg.day_choosed = day_string;\nmsg.payload = day_choosed;\nreturn msg;",
+        "func": "function pad(n) {\n    if (n<10) // do zero padding\n    {\n        var str = \"0\" + n.toString();\n        return str;\n    }\n    else\n    {\n        return n.toString();\n    }\n}\n\n// initialise the day_choosed to actual date if it doesn't exist already\nvar day_choosed = context.get('day_choosed')||new Date(); // \n\n\nif (msg.topic == \"today\")\n{\n    day_choosed = new Date();\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == \"yesterday\")\n{\n    day_choosed.setDate(day_choosed.getDate() - 1);\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == \"tomorrow\")\n{\n    day_choosed.setDate(day_choosed.getDate() + 1);\n    if (day_choosed > new Date())\n    {\n        day_choosed = new Date();\n    }\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == 'calendar')\n{\n    day_choosed = new Date(msg.payload);\n    if (day_choosed > new Date())\n    {\n        day_choosed = new Date();\n    }\n    context.set('day_choosed', day_choosed);\n}\n\n// convert into calendar time\nvar day_string = day_choosed.getFullYear() + \"-\" + \n                pad(day_choosed.getMonth() + 1) + \"-\" + \n                pad(day_choosed.getDate());\n\n\n//msg.payload = day_string;\n// make it part of the outgoing msg object\nmsg.day_choosed = day_string;\nmsg.payload = day_choosed;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 328,
         "y": 1471,
         "wires": [
             [
-                "92312124.233df",
-                "ca4d5404.7a2b5",
-                "5f6f93e6.09aa5c"
+                "37e1a067.1a639",
+                "e1ec37a0.0187d8",
+                "9a469f6c.87034"
             ]
         ]
     },
     {
-        "id": "92312124.233df",
+        "id": "37e1a067.1a639",
         "type": "debug",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
-        "active": false,
+        "active": true,
         "console": "false",
         "complete": "true",
         "x": 633,
@@ -1417,9 +1515,9 @@
         "wires": []
     },
     {
-        "id": "95ea5815.b569b8",
+        "id": "feab3401.75e7b8",
         "type": "inject",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "today",
         "topic": "today",
         "payload": "true",
@@ -1431,14 +1529,14 @@
         "y": 1383,
         "wires": [
             [
-                "ee629987.6d50f8"
+                "34d82408.18347c"
             ]
         ]
     },
     {
-        "id": "aefef858.6ad1b8",
+        "id": "d0e441e4.40ae9",
         "type": "inject",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "yesterday",
         "topic": "yesterday",
         "payload": "true",
@@ -1450,14 +1548,14 @@
         "y": 1478,
         "wires": [
             [
-                "ee629987.6d50f8"
+                "34d82408.18347c"
             ]
         ]
     },
     {
-        "id": "2f0a8bcb.35c854",
+        "id": "6334191b.d29a18",
         "type": "inject",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "tomorrow",
         "topic": "tomorrow",
         "payload": "true",
@@ -1469,16 +1567,16 @@
         "y": 1571,
         "wires": [
             [
-                "ee629987.6d50f8"
+                "34d82408.18347c"
             ]
         ]
     },
     {
-        "id": "5f10d93c.5ada08",
+        "id": "534b6e83.9864c",
         "type": "ui_button",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "today",
-        "group": "c922d474.10b1b8",
+        "group": "88e35b00.a73af8",
         "order": 2,
         "width": "2",
         "height": "1",
@@ -1493,16 +1591,16 @@
         "y": 1423,
         "wires": [
             [
-                "ee629987.6d50f8"
+                "34d82408.18347c"
             ]
         ]
     },
     {
-        "id": "5bc30a32.4a7db4",
+        "id": "6035e4e5.2caf1c",
         "type": "ui_button",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "yesterday",
-        "group": "c922d474.10b1b8",
+        "group": "88e35b00.a73af8",
         "order": 1,
         "width": "2",
         "height": "1",
@@ -1517,16 +1615,16 @@
         "y": 1520,
         "wires": [
             [
-                "ee629987.6d50f8"
+                "34d82408.18347c"
             ]
         ]
     },
     {
-        "id": "cc384b23.ba8888",
+        "id": "d076c09.dcb414",
         "type": "ui_button",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "tomorrow",
-        "group": "c922d474.10b1b8",
+        "group": "88e35b00.a73af8",
         "order": 3,
         "width": "2",
         "height": "1",
@@ -1541,14 +1639,14 @@
         "y": 1625,
         "wires": [
             [
-                "ee629987.6d50f8"
+                "34d82408.18347c"
             ]
         ]
     },
     {
-        "id": "b3550da9.ffe79",
+        "id": "df691860.afc6c8",
         "type": "inject",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "midnight",
         "topic": "today",
         "payload": "true",
@@ -1560,15 +1658,15 @@
         "y": 1333,
         "wires": [
             [
-                "ee629987.6d50f8"
+                "34d82408.18347c"
             ]
         ]
     },
     {
-        "id": "5f6f93e6.09aa5c",
+        "id": "9a469f6c.87034",
         "type": "ui_text",
-        "z": "ef2e3d60.bc774",
-        "group": "c922d474.10b1b8",
+        "z": "46efba90.c91554",
+        "group": "88e35b00.a73af8",
         "order": 4,
         "width": "10",
         "height": "1",
@@ -1581,10 +1679,10 @@
         "wires": []
     },
     {
-        "id": "4c9f9831.b2b158",
+        "id": "8baea022.416f9",
         "type": "ui_text",
-        "z": "ef2e3d60.bc774",
-        "group": "c922d474.10b1b8",
+        "z": "46efba90.c91554",
+        "group": "88e35b00.a73af8",
         "order": 5,
         "width": "10",
         "height": "1",
@@ -1597,9 +1695,9 @@
         "wires": []
     },
     {
-        "id": "623b0ea7.920d2",
+        "id": "8b2feeec.7f34c",
         "type": "debug",
-        "z": "ef2e3d60.bc774",
+        "z": "46efba90.c91554",
         "name": "",
         "active": true,
         "console": "false",
@@ -1607,5 +1705,100 @@
         "x": 1135,
         "y": 1511,
         "wires": []
+    },
+    {
+        "id": "9f862cdf.74b3d",
+        "type": "inject",
+        "z": "46efba90.c91554",
+        "name": "Set_inverter_time",
+        "topic": "set_time",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 282.79261779785156,
+        "y": 216.7073802947998,
+        "wires": [
+            [
+                "a054aa2a.485928"
+            ]
+        ]
+    },
+    {
+        "id": "538c7c4e.c68bf4",
+        "type": "debug",
+        "z": "46efba90.c91554",
+        "name": "",
+        "active": false,
+        "console": "false",
+        "complete": "true",
+        "x": 1009.7840595245361,
+        "y": 205.784086227417,
+        "wires": []
+    },
+    {
+        "id": "7f39498f.0bd038",
+        "type": "function",
+        "z": "46efba90.c91554",
+        "name": "Set inverter time",
+        "func": "var msg1_ser_out = {payload:\"\"};\nvar msg2_ser_out = {payload:\"\"};\nvar msg3_ser_out = {payload:\"\"};\nvar msg4_ser_out = {payload:\"\"};\nvar msg5_ser_out = {payload:\"\"};\n\nvar set_year_cmd = Buffer([0x00, 0xFF, 0x32]);\nvar set_month_cmd = Buffer([0x00, 0xFF, 0x33]);\nvar set_day_cmd = Buffer([0x00, 0xFF, 0x34]);\nvar set_hour_cmd = Buffer([0x00, 0xFF, 0x35]);\nvar set_min_cmd = Buffer([0x00, 0xFF, 0x36]);\n\nif (msg.topic === \"DateTime\" )  // Relevant for this function\n{\n    var year = Buffer([msg.year - 2000]); \n    msg1_ser_out.payload = Buffer.concat([set_year_cmd, year], 4);\n    msg1_ser_out.topic = \"set_year\";\n    \n    var month = Buffer([msg.month]); \n    msg2_ser_out.payload = Buffer.concat([set_month_cmd, month], 4);\n    msg2_ser_out.topic = \"set_month\";\n    \n    var day = Buffer([msg.day]); \n    msg3_ser_out.payload = Buffer.concat([set_day_cmd, day], 4);\n    msg3_ser_out.topic = \"set_day\";\n    \n    var hour = Buffer([msg.hours + 1]); \n    msg4_ser_out.payload = Buffer.concat([set_hour_cmd, hour], 4);\n    msg4_ser_out.topic = \"set_hour\";\n    \n    var min = Buffer([msg.mins + 1]); \n    msg5_ser_out.payload = Buffer.concat([set_min_cmd, min], 4);\n    msg5_ser_out.topic = \"set_min\";\n    \n    return [[msg1_ser_out, msg2_ser_out, msg3_ser_out], [msg4_ser_out, msg5_ser_out]];\n\n}\nelse // not relevant -> another query\n{\n    // do nothing\n}\n",
+        "outputs": "2",
+        "noerr": 0,
+        "x": 581.650520324707,
+        "y": 276.00559425354004,
+        "wires": [
+            [
+                "9aceb51f.0a9fc8"
+            ],
+            [
+                "9aceb51f.0a9fc8"
+            ]
+        ]
+    },
+    {
+        "id": "9aceb51f.0a9fc8",
+        "type": "delay",
+        "z": "46efba90.c91554",
+        "name": "Queue",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "10",
+        "nbRateUnits": "1",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": false,
+        "x": 760.6504745483398,
+        "y": 274.00559425354004,
+        "wires": [
+            [
+                "538c7c4e.c68bf4",
+                "35808314.d50abc"
+            ]
+        ]
+    },
+    {
+        "id": "b9ad2d45.36fb8",
+        "type": "ui_date_picker",
+        "z": "46efba90.c91554",
+        "name": "calendar",
+        "label": "Kalender",
+        "group": "88e35b00.a73af8",
+        "order": 0,
+        "width": "2",
+        "height": "1",
+        "passthru": true,
+        "topic": "calendar",
+        "x": 140.42039489746094,
+        "y": 1676.8264560699463,
+        "wires": [
+            [
+                "37e1a067.1a639",
+                "34d82408.18347c"
+            ]
+        ]
     }
 ]
