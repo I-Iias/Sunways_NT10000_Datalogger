@@ -156,9 +156,9 @@
         "z": "",
         "name": "aktuelle Daten",
         "tab": "4c2cb675.22cc58",
-        "order": 3,
+        "order": 2,
         "disp": true,
-        "width": "18"
+        "width": "16"
     },
     {
         "id": "1a57e085.8db03f",
@@ -242,9 +242,9 @@
         "z": "",
         "name": "Tagesdaten",
         "tab": "4c2cb675.22cc58",
-        "order": 2,
+        "order": 3,
         "disp": true,
-        "width": "12"
+        "width": "18"
     },
     {
         "id": "7b2d2942.6d5928",
@@ -430,20 +430,34 @@
         "name": "",
         "group": "cc10e938.342c08",
         "order": 1,
-        "width": "18",
-        "height": "6",
+        "width": "16",
+        "height": "7",
         "label": "Leistungskurve [kW]",
         "chartType": "line",
         "legend": "false",
         "xformat": "HH:mm",
         "interpolate": "linear",
         "nodata": "keine Daten verfügbar :(",
+        "dot": false,
         "ymin": "",
         "ymax": "",
         "removeOlder": "14",
         "removeOlderPoints": "1000",
         "removeOlderUnit": "3600",
         "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": true,
         "x": 1284,
         "y": 804,
         "wires": [
@@ -904,7 +918,7 @@
         "type": "function",
         "z": "46efba90.c91554",
         "name": "plot online data",
-        "func": "function energy_correction(orig){\n    orig = 1.0374 * orig - 562.69;\n    return orig;\n}\n\nif (msg.topic === \"pac\") // ac Power\n{\n    return [msg, null, null, null];\n}\nelse if (msg.topic === \"wd\") // day Wh\n{\n    var wd = msg.payload;\n    wd = 1.0374 * wd;\n    wd = Math.round(wd*100)/100;\n    msg.payload = \"\"+ wd + \" kWh\";\n    return [null, msg, null, null];\n}\nelse if (msg.topic === \"wtot\")\n{\n    var wtot = msg.payload;\n    wtot = energy_correction(wtot);\n    wtot = Math.round(wtot);\n    msg.payload = \"\"+ wtot + \" kWh\";\n    return [null, null, msg, null];\n}\nelse if (msg.topic === \"error\")\n{\n    var error = msg.payload;\n    var text = \"\";\n    if ((error === 0) || (error === 128))\n    {\n        text = \"keinen Fehler\";\n    }\n    else\n    {\n        text = error;\n    }\n    msg = {payload: text};\n    return [null, null, null, msg];\n}",
+        "func": "function energy_correction(orig){\n    orig = 1.039162 * orig - 744.8984;\n    return orig;\n}\n\nif (msg.topic === \"pac\") // ac Power\n{\n    return [msg, null, null, null];\n}\nelse if (msg.topic === \"wd\") // day Wh\n{\n    var wd = msg.payload;\n    wd = 1.039162 * wd;\n    wd = Math.round(wd*100)/100;\n    msg.payload = \"\"+ wd + \" kWh\";\n    return [null, msg, null, null];\n}\nelse if (msg.topic === \"wtot\")\n{\n    var wtot = msg.payload;\n    wtot = energy_correction(wtot);\n    wtot = Math.round(wtot);\n    msg.payload = \"\"+ wtot + \" kWh\";\n    return [null, null, msg, null];\n}\nelse if (msg.topic === \"error\")\n{\n    var error = msg.payload;\n    var text = \"\";\n    if ((error === 0) || (error === 128))\n    {\n        text = \"keinen Fehler\";\n    }\n    else\n    {\n        text = error;\n    }\n    msg = {payload: text};\n    return [null, null, null, msg];\n}",
         "outputs": "4",
         "noerr": 0,
         "x": 1082,
@@ -936,7 +950,7 @@
         "crontab": "",
         "once": false,
         "x": 303,
-        "y": 436,
+        "y": 423.9999761581421,
         "wires": [
             [
                 "3407f58c.60f5ca"
@@ -1460,7 +1474,7 @@
         "group": "88e35b00.a73af8",
         "order": 6,
         "width": "18",
-        "height": "5",
+        "height": "7",
         "label": "Datenbank",
         "chartType": "line",
         "legend": "true",
@@ -1730,8 +1744,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 275.7926216125488,
-        "y": 186.70738697052002,
+        "x": 264.7926330566406,
+        "y": 186.70737552642822,
         "wires": [
             [
                 "a054aa2a.485928"
@@ -1810,6 +1824,25 @@
             [
                 "37e1a067.1a639",
                 "34d82408.18347c"
+            ]
+        ]
+    },
+    {
+        "id": "d01fa69.0824d58",
+        "type": "inject",
+        "z": "46efba90.c91554",
+        "name": "set_time (Noon + 5min)",
+        "topic": "set_time",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "05 12 * * *",
+        "once": false,
+        "x": 298.0142059326172,
+        "y": 466.91475200653076,
+        "wires": [
+            [
+                "3407f58c.60f5ca"
             ]
         ]
     }
