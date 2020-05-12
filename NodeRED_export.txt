@@ -416,7 +416,7 @@
         "type": "debug",
         "z": "46efba90.c91554",
         "name": "serial_out",
-        "active": false,
+        "active": true,
         "console": "false",
         "complete": "payload",
         "x": 823,
@@ -687,7 +687,9 @@
         "x": 1208,
         "y": 704,
         "wires": [
-            []
+            [
+                "96104994.a901c8"
+            ]
         ]
     },
     {
@@ -949,12 +951,12 @@
         "func": "//var data_msg = {payload:\"\"};\nvar msg_ser_out = {payload:\"\"};\n// initialise the counter to 0 if it doesn't exist already\nvar count = context.get('count')||0;\n// initialise the data_msg with \"\" if it doesn't exist already\nvar data_msg = context.get('data_msg')||{payload:\"\"};\n\nvar failure_cmd = Buffer([0x00, 0x01, 0x01]);\n\nif (msg.topic === \"Failure_memory\" )  // Relevant for this function\n{\n    if (msg.payload === true)  // trigger signal\n    {\n        count = 0x01;\n        var BN = Buffer([count]);                    // Block number\n        msg_ser_out.payload = Buffer.concat([failure_cmd, BN], (failure_cmd.length + 1));\n        msg_ser_out.topic = \"Failure_memory\";\n        \n        data_msg.payload = new Array(50);\n        context.set('data_msg', data_msg);\n        context.set('count', count);\n        return [null, msg_ser_out];\n    }\n    else // payload with buffer data\n    {\n        if (count < 0x32) // write failure_cmd\n        {\n            data_msg.payload[count-1] = msg.payload;\n            data_msg.topic = \"failure_memory\";\n            context.set('data_msg', data_msg);\n            \n            count +=1;\n            context.set('count', count);\n            var BN = Buffer([count]);                    // Block number\n            msg_ser_out.payload = Buffer.concat([failure_cmd, BN], (failure_cmd.length + 1));\n            msg_ser_out.topic = \"Failure_memory\";\n            \n            \n            return [null, msg_ser_out];\n        }\n        else  // send last data out\n        {\n            data_msg.payload[count-1] = msg.payload;\n            data_msg.topic = \"failure_memory\";\n            return [data_msg, null];\n        }\n        \n    }\n\n}\nelse // not relevant -> another query\n{\n    // do nothing\n}\n",
         "outputs": "2",
         "noerr": 0,
-        "x": 584,
-        "y": 432,
+        "x": 578.9999694824219,
+        "y": 427.999981880188,
         "wires": [
             [
-                "12c9add8.240832",
-                "538c7c4e.c68bf4"
+                "538c7c4e.c68bf4",
+                "12c9add8.240832"
             ],
             [
                 "35808314.d50abc"
@@ -966,7 +968,7 @@
         "type": "debug",
         "z": "46efba90.c91554",
         "name": "database_input",
-        "active": false,
+        "active": true,
         "console": "false",
         "complete": "true",
         "x": 1202,
@@ -978,14 +980,19 @@
         "type": "function",
         "z": "46efba90.c91554",
         "name": "write failure data",
-        "func": "function pad(n) {\n    if (n<10) // do zero padding\n    {\n        var str = \"0\" + n.toString();\n        return str;\n    }\n    else\n    {\n        return n.toString();\n    }\n}\n\nif (msg.topic === \"failure_memory\")\n{\n    var buffer = msg.payload;\n    // convert older data\n    var month = buffer[6];\n    var day = buffer[7];\n    var hour = buffer[8];\n    var minute = buffer[9];\n    var code = buffer[10];\n    var year = 2000 + buffer[11];  \n    \n    var timestring = \"\" + year + \"-\" + pad(month) + \"-\" + pad(day) + \",\" + pad(hour) + \":\" + pad(minute);\n    var data_string = \"'\" + timestring + \"', '\" + code + \"'\";\n    var db_msg = {topic: \"\"};\n    db_msg.topic = \"INSERT INTO `Fehlerspeicher` (`Zeit`, `Fehlercode`) VALUES (\" + data_string + \")\";\n    \n    node.send(db_msg);\n    \n    // convert newer data\n    var month = buffer[0];\n    var day = buffer[1];\n    var hour = buffer[2];\n    var minute = buffer[3];\n    var code = buffer[4];\n    var year = 2000 + buffer[5];  \n    \n    var timestring = \"\" + year + \"-\" + pad(month) + \"-\" + pad(day) + \",\" + pad(hour) + \":\" + pad(minute);\n    var data_string = \"'\" + timestring + \"', '\" + code + \"'\";\n    var db_msg = {topic: \"\"};\n    db_msg.topic = \"INSERT INTO `Fehlerspeicher` (`Zeit`, `Fehlercode`) VALUES (\" + data_string + \")\";\n    \n    return [db_msg];\n}\nelse // do nothing\n{\n    \n}\n\n",
-        "outputs": "1",
+        "func": "function pad(n) {\n    if (n<10) // do zero padding\n    {\n        var str = \"0\" + n.toString();\n        return str;\n    }\n    else\n    {\n        return n.toString();\n    }\n}\n\nfunction check_up_to_dateness(failure_entry, db_entry)\n{\n    var i;\n    var up_to_date;\n    var cnt = 5\n    for (i = 0; i < db_entry.length; i++)\n    {\n        if (failure_entry[i] > db_entry[i])\n        {\n            up_to_date = 1;\n            break;\n        }\n        else if (failure_entry[i] == db_entry[i])\n        {\n            up_to_date = 0; // if everything is equal it's not new\n        }\n        else // failure_entry[i] < db_entry[i]\n        {\n            up_to_date = 0;\n            break;\n        }\n    }\n    return up_to_date;\n}\n\n\nif (msg.topic === \"failure_memory\")\n{\n    // read data in\n    var data = msg.payload;\n    \n    context.set('data', data);\n    \n    // send query to mysql database to get last element\n    var query_msg = {topic: \"\"};\n    query_msg.topic = \"SELECT * FROM Fehlerspeicher ORDER BY ID DESC LIMIT 1\";\n\n    return [query_msg, null];\n    \n\n    \n}\nelse if (msg.topic.substr(0,6) == \"SELECT\")// get last line from database and write new data into database\n{\n    // get data from database\n    var last_entry = msg.payload[0];\n    var date_str = last_entry.Zeit;\n    var date_time = date_str.split(\",\");\n    var date = date_time[0].split(\"-\");\n    var time = date_time[1].split(\":\");\n    var failurecode = last_entry.Fehlercode;\n    var db_entry = [parseInt(date[0]), parseInt(date[1]), parseInt(date[2]), parseInt(time[0]), parseInt(time[1])];\n    \n    var data = context.get('data');\n    var i;\n    len = data.length;\n    for (i = len-1; i >= 0; i--)\n    {\n        var buffer = data[i];\n        \n        // convert older data\n        var month = buffer[6];\n        var day = buffer[7];\n        var hour = buffer[8];\n        var minute = buffer[9];\n        var code = buffer[10];\n        var year = 2000 + buffer[11];  \n        var failure_entry = [year, month, day, hour, minute];\n        var up_to_date = check_up_to_dateness(failure_entry, db_entry);\n        \n        if (up_to_date)\n        {\n            var timestring = \"\" + year + \"-\" + pad(month) + \"-\" + pad(day) + \",\" + pad(hour) + \":\" + pad(minute);\n            var data_string = \"'\" + timestring + \"', '\" + code + \"'\";\n            var db_msg = {topic: \"\"};\n            db_msg.topic = \"INSERT INTO `Fehlerspeicher` (`Zeit`, `Fehlercode`) VALUES (\" + data_string + \")\";\n            db_msg.payload = failure_entry;\n            \n            node.send([null,db_msg]);\n        }\n        \n        // convert newer data\n        var month = buffer[0];\n        var day = buffer[1];\n        var hour = buffer[2];\n        var minute = buffer[3];\n        var code = buffer[4];\n        var year = 2000 + buffer[5];  \n        var failure_entry = [year, month, day, hour, minute];\n        var up_to_date = check_up_to_dateness(failure_entry, db_entry);\n        \n        if (up_to_date)\n        {\n            var timestring = \"\" + year + \"-\" + pad(month) + \"-\" + pad(day) + \",\" + pad(hour) + \":\" + pad(minute);\n            var data_string = \"'\" + timestring + \"', '\" + code + \"'\";\n            var db_msg = {topic: \"\"};\n            db_msg.topic = \"INSERT INTO `Fehlerspeicher` (`Zeit`, `Fehlercode`) VALUES (\" + data_string + \")\";\n            db_msg.payload = failure_entry;\n            node.send([null,db_msg]);\n        }\n        \n    }\n}\nelse // feedback from database insert\n{\n    \n}\n\n",
+        "outputs": "2",
         "noerr": 0,
-        "x": 871.9999923706055,
-        "y": 429.9999952316284,
+        "x": 913.0000114440918,
+        "y": 430.9999713897705,
         "wires": [
             [
-                "6decf517.59f7ec"
+                "6decf517.59f7ec",
+                "5f9d1092.95474"
+            ],
+            [
+                "6decf517.59f7ec",
+                "5f9d1092.95474"
             ]
         ]
     },
@@ -999,7 +1006,8 @@
         "y": 469,
         "wires": [
             [
-                "96104994.a901c8"
+                "96104994.a901c8",
+                "12c9add8.240832"
             ]
         ]
     },
@@ -1008,11 +1016,11 @@
         "type": "debug",
         "z": "46efba90.c91554",
         "name": "database_output",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "true",
-        "x": 1322,
-        "y": 492,
+        "x": 1253.9999809265137,
+        "y": 533.9999780654907,
         "wires": []
     },
     {
@@ -1491,7 +1499,7 @@
         "type": "function",
         "z": "46efba90.c91554",
         "name": "set day",
-        "func": "function pad(n) {\n    if (n<10) // do zero padding\n    {\n        var str = \"0\" + n.toString();\n        return str;\n    }\n    else\n    {\n        return n.toString();\n    }\n}\n\n// initialise the day_choosed to actual date if it doesn't exist already\nvar day_choosed = context.get('day_choosed')||new Date(); // \n\n\nif (msg.topic == \"today\")\n{\n    day_choosed = new Date();\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == \"yesterday\")\n{\n    day_choosed.setDate(day_choosed.getDate() - 1);\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == \"tomorrow\")\n{\n    day_choosed.setDate(day_choosed.getDate() + 1);\n    if (day_choosed > new Date())\n    {\n        day_choosed = new Date();\n    }\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == 'calendar')\n{\n    day_choosed = new Date(msg.payload);\n    if (day_choosed > new Date())\n    {\n        day_choosed = new Date();\n    }\n    context.set('day_choosed', day_choosed);\n}\n\n// convert into calendar time\nvar day_string = day_choosed.getFullYear() + \"-\" + \n                pad(day_choosed.getMonth() + 1) + \"-\" + \n                pad(day_choosed.getDate());\n\n\n//msg.payload = day_string;\n// make it part of the outgoing msg object\nmsg.day_choosed = day_string;\nmsg.payload = day_choosed;\nreturn msg;",
+        "func": "function pad(n) {\n    if (n<10) // do zero padding\n    {\n        var str = \"0\" + n.toString();\n        return str;\n    }\n    else\n    {\n        return n.toString();\n    }\n}\n\n// initialise the day_choosed to actual date if it doesn't exist already\nvar day_choosed = context.get('day_choosed')||new Date(); // \n\n\nif (msg.topic == \"today\")\n{\n    day_choosed = new Date();\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == \"yesterday\")\n{\n    day_choosed = new Date();\n    day_choosed.setDate(day_choosed.getDate() - 1);\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == \"day_before\")\n{\n    day_choosed.setDate(day_choosed.getDate() - 1);\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == \"day_after\")\n{\n    day_choosed.setDate(day_choosed.getDate() + 1);\n    if (day_choosed > new Date())\n    {\n        day_choosed = new Date();\n    }\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == 'calendar')\n{\n    day_choosed = new Date(msg.payload);\n    if (day_choosed > new Date())\n    {\n        day_choosed = new Date();\n    }\n    context.set('day_choosed', day_choosed);\n}\n\n// convert into calendar time\nvar day_string = day_choosed.getFullYear() + \"-\" + \n                pad(day_choosed.getMonth() + 1) + \"-\" + \n                pad(day_choosed.getDate());\n\n\n//msg.payload = day_string;\n// make it part of the outgoing msg object\nmsg.day_choosed = day_string;\nmsg.payload = day_choosed;\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 328,
@@ -1500,7 +1508,8 @@
             [
                 "37e1a067.1a639",
                 "e1ec37a0.0187d8",
-                "9a469f6c.87034"
+                "9a469f6c.87034",
+                "b9ad2d45.36fb8"
             ]
         ]
     },
@@ -1539,8 +1548,8 @@
         "id": "d0e441e4.40ae9",
         "type": "inject",
         "z": "46efba90.c91554",
-        "name": "yesterday",
-        "topic": "yesterday",
+        "name": "day_before",
+        "topic": "day_before",
         "payload": "true",
         "payloadType": "bool",
         "repeat": "",
@@ -1558,8 +1567,8 @@
         "id": "6334191b.d29a18",
         "type": "inject",
         "z": "46efba90.c91554",
-        "name": "tomorrow",
-        "topic": "tomorrow",
+        "name": "day_after",
+        "topic": "day_after",
         "payload": "true",
         "payloadType": "bool",
         "repeat": "",
@@ -1601,19 +1610,20 @@
         "id": "6035e4e5.2caf1c",
         "type": "ui_button",
         "z": "46efba90.c91554",
-        "name": "yesterday",
+        "name": "day_before",
         "group": "88e35b00.a73af8",
         "order": 1,
         "width": "2",
         "height": "1",
+        "passthru": false,
         "label": "Tag davor",
         "color": "",
         "bgcolor": "",
         "icon": "",
         "payload": "true",
         "payloadType": "bool",
-        "topic": "yesterday",
-        "x": 144,
+        "topic": "day_before",
+        "x": 154,
         "y": 1520,
         "wires": [
             [
@@ -1625,18 +1635,19 @@
         "id": "d076c09.dcb414",
         "type": "ui_button",
         "z": "46efba90.c91554",
-        "name": "tomorrow",
+        "name": "day_after",
         "group": "88e35b00.a73af8",
         "order": 3,
         "width": "2",
         "height": "1",
+        "passthru": false,
         "label": "Tag danach",
         "color": "",
         "bgcolor": "",
         "icon": "",
         "payload": "true",
         "payloadType": "bool",
-        "topic": "tomorrow",
+        "topic": "day_after",
         "x": 138,
         "y": 1625,
         "wires": [
@@ -1734,8 +1745,8 @@
         "name": "",
         "active": true,
         "console": "false",
-        "complete": "true",
-        "x": 911.7840270996094,
+        "complete": "payload",
+        "x": 931.7840270996094,
         "y": 382.78407764434814,
         "wires": []
     },
@@ -1789,9 +1800,9 @@
         "label": "Kalender",
         "group": "88e35b00.a73af8",
         "order": 0,
-        "width": "2",
+        "width": "3",
         "height": "1",
-        "passthru": true,
+        "passthru": false,
         "topic": "calendar",
         "x": 140.42039489746094,
         "y": 1676.8264560699463,
