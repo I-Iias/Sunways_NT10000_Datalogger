@@ -1845,5 +1845,70 @@
                 "3407f58c.60f5ca"
             ]
         ]
+    },
+    {
+        "id": "4917f43d.8a825c",
+        "type": "inject",
+        "z": "46efba90.c91554",
+        "name": "weekly",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "50 23 * * 2",
+        "once": false,
+        "x": 364,
+        "y": 1870,
+        "wires": [
+            [
+                "6ea256ac.1fbca8"
+            ]
+        ]
+    },
+    {
+        "id": "6ea256ac.1fbca8",
+        "type": "exec",
+        "z": "46efba90.c91554",
+        "command": "sudo reboot",
+        "addpay": true,
+        "append": "",
+        "useSpawn": "",
+        "timer": "",
+        "name": "reboot system",
+        "x": 771,
+        "y": 1865.5,
+        "wires": [
+            [
+                "75450ca6.6c36d4"
+            ],
+            [
+                "75450ca6.6c36d4"
+            ],
+            [
+                "75450ca6.6c36d4"
+            ]
+        ]
+    },
+    {
+        "id": "75450ca6.6c36d4",
+        "type": "debug",
+        "z": "46efba90.c91554",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 994,
+        "y": 1870,
+        "wires": []
+    },
+    {
+        "id": "8d65c27.594124",
+        "type": "comment",
+        "z": "46efba90.c91554",
+        "name": "Reboot system to avoid temporary files to spam SD card",
+        "info": "",
+        "x": 396,
+        "y": 1806,
+        "wires": []
     }
 ]
