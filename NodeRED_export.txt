@@ -341,8 +341,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 358,
-        "y": 345,
+        "x": 429,
+        "y": 870,
         "wires": [
             [
                 "f85fb505.488608"
@@ -357,8 +357,8 @@
         "active": true,
         "console": "false",
         "complete": "true",
-        "x": 950,
-        "y": 273,
+        "x": 1021,
+        "y": 798,
         "wires": []
     },
     {
@@ -369,8 +369,8 @@
         "func": "if ( !msg.timestamp ) msg.timestamp = Math.round(+new Date());\n\nvar dt = new Date(msg.timestamp);\nvar msg = {\n\t'month':\tdt.getMonth() + 1,\n\t'day':\t\tdt.getDate(),\n\t'year':\t\tdt.getFullYear(),\n\t'hours':\tdt.getHours(),\n\t'mins':\t\tdt.getMinutes(),\n\t'secs':\tdt.getSeconds()\n}\n\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 754,
-        "y": 273,
+        "x": 825,
+        "y": 798,
         "wires": [
             [
                 "66c2713f.d59cd"
@@ -384,8 +384,8 @@
         "name": "set timestamp",
         "func": "msg.timestamp=1376763133 * 1000;\nreturn msg;",
         "outputs": 1,
-        "x": 542,
-        "y": 345,
+        "x": 613,
+        "y": 870,
         "wires": [
             [
                 "dffb940d.3d2b08"
@@ -403,8 +403,8 @@
         "repeat": "",
         "crontab": "",
         "once": false,
-        "x": 358,
-        "y": 273,
+        "x": 429,
+        "y": 798,
         "wires": [
             [
                 "dffb940d.3d2b08"
@@ -493,7 +493,7 @@
         "type": "function",
         "z": "46efba90.c91554",
         "name": "write online data",
-        "func": "if (msg.topic === \"Online_data1\" || msg.topic === \"Online_data2\" || msg.topic === \"Online_data3\")\n{\n    var buffer = msg.payload;\n    // convert data\n    var udc = buffer[0] * 2.8 + 200;\n    var idc = buffer[1] * 0.08;\n    var uac = buffer[2] + 100;\n    var iac = buffer[3] * 0.12;\n    var temp = buffer[4] - 40;  // Temperature\n    var s = buffer[5] * 6;      // radiation\n    var pdc = udc * idc;\n    var pac = uac * iac;\n    var wd = (buffer[6] * 256 + buffer[7]) *10 / 1000; // Tagesertrag kWh\n    var aux = buffer[11] & 0xC5;\n    var overflow = aux>>6 | (aux&4)<<1 | (aux&1)<<2;\n    var wtot = overflow * 65536 + buffer[8] * 256 + buffer[9];     // Gesamtertrag kWh\n    var error = buffer[10];\n    var data_string = \"'\" + udc + \"', '\" + idc + \"', '\" + uac + \"', '\" + iac + \"', '\" + pdc + \"', '\" + pac + \"', '\" + wd + \"', '\" + wtot + \"', '\" + error + \"'\";\n    var db_msg = {topic: \"\"};\n    db_msg.topic = \"INSERT INTO `\" + msg.topic + \"`(`U_dc`, `I_dc`, `U_ac`, `I_ac`, `P_dc`, `P_ac`, `Tagesertrag`, `Gesamtertrag`, `Fehlercode`) VALUES (\" + data_string + \")\";\n\n    return [db_msg, null];\n}\nelse if (msg.topic === \"Online_data_overall\")\n{\n    var buffer = msg.payload;\n    // convert data\n    var pdc = (buffer[0] * 256 + buffer[1])/1000;   // kW\n    var pac = (buffer[2] * 256 + buffer[3])/1000;   // kW\n    var temp = 0;\n    var radi = 0;\n    if (buffer[4] === 1) // no temperature sensor\n    {\n        temp = -40;\n    }\n    else \n    {\n        temp = buffer[4] - 40; // °C\n    }\n    if (buffer[5] === 1) // no radiation sensor\n    {\n        radi = 0;\n    }\n    else \n    {\n        radi = buffer[5] * 6;   // W/m^2\n    }\n    var wd = (buffer[6] * 256 + buffer[7]) * 10 / 1000; // Tagesertrag kWh\n    var aux = buffer[11] & 0xC5;\n    var overflow = aux>>6 | (aux&4)<<1 | (aux&1)<<2;\n    var wtot = overflow * 65536 + buffer[8] * 256 + buffer[9];     // Gesamtertrag kWh\n    var error = buffer[10];\n    // create database msg\n    var data_string = \"'\" + pdc + \"', '\" + pac + \"', '\" + temp + \"', '\" + radi + \"', '\" + wd + \"', '\" + wtot + \"', '\" + error + \"'\";\n    var db_msg = {topic: \"\"};\n    db_msg.topic = \"INSERT INTO `\" + msg.topic + \"`(`P_dc`, `P_ac`, `Temperatur`, `Radiation`, `Tagesertrag`, `Gesamtertrag`, `Fehlercode`) VALUES (\" + data_string + \")\";\n    \n    \n    var plot_pac = {payload: pac};\n    plot_pac.topic = \"pac\";\n    var print_wd = {payload: wd};\n    print_wd.topic = \"wd\";\n    var print_wtot = {payload: wtot};\n    print_wtot.topic = \"wtot\";\n    var print_error = {payload: error};\n    print_error.topic = \"error\";\n    return [db_msg, [plot_pac, print_wd, print_wtot, print_error]];\n}\n\n",
+        "func": "if (msg.topic === \"Online_data1\" || msg.topic === \"Online_data2\" || msg.topic === \"Online_data3\")\n{\n    var buffer = msg.payload;\n    // convert data\n    var udc = buffer[0] * 2.8 + 200;\n    var idc = buffer[1] * 0.08;\n    var uac = buffer[2] + 100;\n    var iac = buffer[3] * 0.12;\n    var temp = buffer[4] - 40;  // Temperature\n    var s = buffer[5] * 6;      // radiation\n    var pdc = udc * idc;\n    var pac = uac * iac;\n    var wd = (buffer[6] * 256 + buffer[7]) *10 / 1000; // Tagesertrag kWh\n    var aux = buffer[11] & 0xC5;\n    var overflow = aux>>6 | (aux&4)<<1 | (aux&1)<<2;\n    var wtot = overflow * 65536 + buffer[8] * 256 + buffer[9];     // Gesamtertrag kWh\n    var error = buffer[10];\n    var data_string = \"'\" + udc + \"', '\" + idc + \"', '\" + uac + \"', '\" + iac + \"', '\" + pdc + \"', '\" + pac + \"', '\" + wd + \"', '\" + wtot + \"', '\" + error + \"'\";\n    var db_msg = {topic: \"\"};\n    var year = new Date().getFullYear();\n    db_msg.topic = \"INSERT INTO `\" + msg.topic + \"_\" + year +\"` (`U_dc`, `I_dc`, `U_ac`, `I_ac`, `P_dc`, `P_ac`, `Tagesertrag`, `Gesamtertrag`, `Fehlercode`) VALUES (\" + data_string + \")\";\n\n    return [db_msg, null];\n}\nelse if (msg.topic === \"Online_data_overall\")\n{\n    var buffer = msg.payload;\n    // convert data\n    var pdc = (buffer[0] * 256 + buffer[1])/1000;   // kW\n    var pac = (buffer[2] * 256 + buffer[3])/1000;   // kW\n    var temp = 0;\n    var radi = 0;\n    if (buffer[4] === 1) // no temperature sensor\n    {\n        temp = -40;\n    }\n    else \n    {\n        temp = buffer[4] - 40; // °C\n    }\n    if (buffer[5] === 1) // no radiation sensor\n    {\n        radi = 0;\n    }\n    else \n    {\n        radi = buffer[5] * 6;   // W/m^2\n    }\n    var wd = (buffer[6] * 256 + buffer[7]) * 10 / 1000; // Tagesertrag kWh\n    var aux = buffer[11] & 0xC5;\n    var overflow = aux>>6 | (aux&4)<<1 | (aux&1)<<2;\n    var wtot = overflow * 65536 + buffer[8] * 256 + buffer[9];     // Gesamtertrag kWh\n    var error = buffer[10];\n    // create database msg\n    var data_string = \"'\" + pdc + \"', '\" + pac + \"', '\" + temp + \"', '\" + radi + \"', '\" + wd + \"', '\" + wtot + \"', '\" + error + \"'\";\n    var db_msg = {topic: \"\"};\n    db_msg.topic = \"INSERT INTO `\" + msg.topic + \"`(`P_dc`, `P_ac`, `Temperatur`, `Radiation`, `Tagesertrag`, `Gesamtertrag`, `Fehlercode`) VALUES (\" + data_string + \")\";\n    \n    \n    var plot_pac = {payload: pac};\n    plot_pac.topic = \"pac\";\n    var print_wd = {payload: wd};\n    print_wd.topic = \"wd\";\n    var print_wtot = {payload: wtot};\n    print_wtot.topic = \"wtot\";\n    var print_error = {payload: error};\n    print_error.topic = \"error\";\n    return [db_msg, [plot_pac, print_wd, print_wtot, print_error]];\n}\n\n",
         "outputs": "2",
         "noerr": 0,
         "x": 837,
@@ -656,9 +656,9 @@
         "payload": "true",
         "payloadType": "bool",
         "repeat": "",
-        "crontab": "",
+        "crontab": "00 11 * * *",
         "once": false,
-        "x": 310,
+        "x": 320,
         "y": 654,
         "wires": [
             [
@@ -686,10 +686,10 @@
         "id": "3048fcec.a33434",
         "type": "comment",
         "z": "46efba90.c91554",
-        "name": "Test for DB output",
+        "name": "Create Tables for next year",
         "info": "",
-        "x": 680.5,
-        "y": 1172,
+        "x": 355.5,
+        "y": 1178,
         "wires": []
     },
     {
@@ -1083,8 +1083,8 @@
         "z": "46efba90.c91554",
         "mydb": "a1a56ac3.5e8868",
         "name": "Datenbank",
-        "x": 675,
-        "y": 1222,
+        "x": 782,
+        "y": 1242,
         "wires": [
             [
                 "17288900.03bb47",
@@ -1096,16 +1096,16 @@
         "id": "90a479c3.6dff18",
         "type": "function",
         "z": "46efba90.c91554",
-        "name": "",
-        "func": "msg.topic = \"SELECT * FROM Fehlerspeicher WHERE STR_TO_DATE(Zeit, '%Y-%m-%d,%H:%i') BETWEEN '2016-02-01 00:00:00' AND '2016-03-02 00:00:00'\";\nreturn msg;",
+        "name": "create_tables_next_year",
+        "func": "var year = new Date().getFullYear() + 1;\nmsg.topic = \"CREATE TABLE IF NOT EXISTS `Online_data1_\" + year + \"` (\" + \n  \"`Zeitstempel` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\" + \n  \"`U_dc` decimal(11,1) DEFAULT NULL,\" + \n  \"`I_dc` decimal(11,2) DEFAULT NULL,\" + \n  \"`U_ac` decimal(11,1) DEFAULT NULL,\" + \n  \"`I_ac` decimal(11,2) DEFAULT NULL,\" + \n  \"`P_dc` decimal(11,0) DEFAULT NULL,\" + \n  \"`P_ac` decimal(11,0) DEFAULT NULL,\" + \n  \"`Tagesertrag` decimal(11,3) DEFAULT NULL COMMENT 'Einheit [kWh]',\" + \n  \"`Gesamtertrag` int(11) DEFAULT NULL COMMENT 'Einheit [kWh]',\" + \n  \"`Fehlercode` int(11) DEFAULT NULL\" + \n\") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;\" + \n\"\\n\" +\n\"CREATE TABLE IF NOT EXISTS `Online_data2_\" + year + \"` (\" + \n  \"`Zeitstempel` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\" + \n  \"`U_dc` decimal(11,1) DEFAULT NULL,\" + \n  \"`I_dc` decimal(11,2) DEFAULT NULL,\" + \n  \"`U_ac` decimal(11,1) DEFAULT NULL,\" + \n  \"`I_ac` decimal(11,2) DEFAULT NULL,\" + \n  \"`P_dc` decimal(11,0) DEFAULT NULL,\" + \n  \"`P_ac` decimal(11,0) DEFAULT NULL,\" + \n  \"`Tagesertrag` decimal(11,3) DEFAULT NULL COMMENT 'Einheit [kWh]',\" + \n  \"`Gesamtertrag` int(11) DEFAULT NULL COMMENT 'Einheit [kWh]',\" + \n  \"`Fehlercode` int(11) DEFAULT NULL\" + \n\") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;\" + \n\"\\n\" +\n\"CREATE TABLE IF NOT EXISTS `Online_data3_\" + year + \"` (\" + \n  \"`Zeitstempel` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\" + \n  \"`U_dc` decimal(11,1) DEFAULT NULL,\" + \n  \"`I_dc` decimal(11,2) DEFAULT NULL,\" + \n  \"`U_ac` decimal(11,1) DEFAULT NULL,\" + \n  \"`I_ac` decimal(11,2) DEFAULT NULL,\" + \n  \"`P_dc` decimal(11,0) DEFAULT NULL,\" + \n  \"`P_ac` decimal(11,0) DEFAULT NULL,\" + \n  \"`Tagesertrag` decimal(11,3) DEFAULT NULL COMMENT 'Einheit [kWh]',\" + \n  \"`Gesamtertrag` int(11) DEFAULT NULL COMMENT 'Einheit [kWh]',\" + \n  \"`Fehlercode` int(11) DEFAULT NULL\" + \n\") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;\" +\n\"\\n\" +\n\"CREATE TABLE IF NOT EXISTS `Online_data_overall_\" + year + \"` (\" + \n  \"`Zeitstempel` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,\" + \n  \"`P_dc` decimal(11,3) DEFAULT NULL,\" + \n  \"`P_ac` decimal(11,3) DEFAULT NULL,\" + \n  \"`Tagesertrag` decimal(11,3) DEFAULT NULL COMMENT 'Einheit [kWh]',\" + \n  \"`Gesamtertrag` int(11) DEFAULT NULL COMMENT 'Einheit [kWh]',\" + \n  \"`Fehlercode` int(11) DEFAULT NULL,\" + \n  \"`Temperatur` int(11) DEFAULT NULL,\" + \n  \"`Radiation` int(11) DEFAULT NULL\" + \n\") ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 456,
-        "y": 1222,
+        "x": 517,
+        "y": 1238,
         "wires": [
             [
-                "f8d185b0.746578",
-                "17288900.03bb47"
+                "17288900.03bb47",
+                "f8d185b0.746578"
             ]
         ]
     },
@@ -1117,23 +1117,23 @@
         "active": true,
         "console": "false",
         "complete": "false",
-        "x": 859,
-        "y": 1311,
+        "x": 969,
+        "y": 1316,
         "wires": []
     },
     {
         "id": "6a10c5d0.b88aac",
         "type": "inject",
         "z": "46efba90.c91554",
-        "name": "",
-        "topic": "",
+        "name": "every_week",
+        "topic": "create_tables_next_year",
         "payload": "true",
         "payloadType": "bool",
         "repeat": "",
-        "crontab": "",
+        "crontab": "00 23 * * 0",
         "once": false,
-        "x": 269,
-        "y": 1220,
+        "x": 290,
+        "y": 1237,
         "wires": [
             [
                 "90a479c3.6dff18"
@@ -1351,387 +1351,13 @@
         "func": "var test = msg.payload[0]['Zeit'];\nvar length = msg.payload.length;\nvar array = Array(length);\nfor (var i = 0; i<length; i++)\n{\n    var timestamp = msg.payload[i]['Zeitstempel']\n    var zeit = msg.payload[i]['Zeit'];\n    //array[i] = Date(zeit).getTime();\n    var code = msg.payload[i]['Fehlercode'];\n    array[i] = [Date.parse(timestamp), Date.parse(zeit), code];\n}\nvar msg = {payload: array};\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
-        "x": 920,
-        "y": 1224,
+        "x": 1027,
+        "y": 1244,
         "wires": [
             [
                 "17288900.03bb47"
             ]
         ]
-    },
-    {
-        "id": "10f9aa83.65db65",
-        "type": "mysql",
-        "z": "46efba90.c91554",
-        "mydb": "a1a56ac3.5e8868",
-        "name": "Datenbank",
-        "x": 708,
-        "y": 1453,
-        "wires": [
-            [
-                "ad930dc9.01b21",
-                "862a976c.9bbb58"
-            ]
-        ]
-    },
-    {
-        "id": "e1ec37a0.0187d8",
-        "type": "function",
-        "z": "46efba90.c91554",
-        "name": "Select from DB",
-        "func": "var day_start = msg.day_choosed.substring(0,10) + \" 00:00:00\"\nvar day_end =  msg.day_choosed.substring(0,10) + \" 23:59:59\"\n\nmsg.topic = \"SELECT * \" +\n        \"FROM Online_data_overall \" +\n        \"WHERE Zeitstempel >= '\" + day_start + \n        \"' AND Zeitstempel <= '\" + day_end + \"'\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 518,
-        "y": 1448,
-        "wires": [
-            [
-                "10f9aa83.65db65",
-                "ad930dc9.01b21"
-            ]
-        ]
-    },
-    {
-        "id": "ad930dc9.01b21",
-        "type": "debug",
-        "z": "46efba90.c91554",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "false",
-        "x": 1102,
-        "y": 1718,
-        "wires": []
-    },
-    {
-        "id": "862a976c.9bbb58",
-        "type": "function",
-        "z": "46efba90.c91554",
-        "name": "Filter data",
-        "func": "var length = msg.payload.length;\nvar array = Array(length);\nvar day_kWh = 0;\n// get Timezone offset \nvar offset = new Date().getTimezoneOffset(); // in minutes\nfor (var i = 0; i<length; i++)\n{\n    var timestamp = msg.payload[i]['Zeitstempel']\n    var pac = msg.payload[i]['P_ac'];\n    array[i] = [Date.parse(timestamp) + offset*60000, pac];\n    \n    // maximum of Tagesertrag\n    var aux = msg.payload[i]['Tagesertrag'];\n    if (aux >= day_kWh)\n    {\n        day_kWh = aux;\n    }\n}\n// correct energy\nday_kWh = 1.0374*day_kWh;\nday_kWh = Math.round(day_kWh*100)/100;\n\nvar msg = {payload: array};\nvar msg_kWh = {payload: \"\" + day_kWh + \" kWh\"};\nreturn [msg_kWh, msg];",
-        "outputs": "2",
-        "noerr": 0,
-        "x": 904,
-        "y": 1468,
-        "wires": [
-            [
-                "8baea022.416f9",
-                "8b2feeec.7f34c"
-            ],
-            [
-                "72d74aca.fa40f4"
-            ]
-        ]
-    },
-    {
-        "id": "72d74aca.fa40f4",
-        "type": "json",
-        "z": "46efba90.c91554",
-        "name": "",
-        "x": 966,
-        "y": 1526,
-        "wires": [
-            [
-                "81fc211a.1c3d1"
-            ]
-        ]
-    },
-    {
-        "id": "81fc211a.1c3d1",
-        "type": "function",
-        "z": "46efba90.c91554",
-        "name": "add cmd for chart",
-        "func": "msg.payload = \"[{\\\"key\\\":\\\"P_ac\\\",\\\"values\\\":\" + msg.payload + \"}]\";\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 1063,
-        "y": 1594,
-        "wires": [
-            [
-                "1aa1abeb.94b264"
-            ]
-        ]
-    },
-    {
-        "id": "1aa1abeb.94b264",
-        "type": "json",
-        "z": "46efba90.c91554",
-        "name": "",
-        "x": 1033,
-        "y": 1662,
-        "wires": [
-            [
-                "ad930dc9.01b21",
-                "4c24ac77.da34d4"
-            ]
-        ]
-    },
-    {
-        "id": "4c24ac77.da34d4",
-        "type": "ui_chart",
-        "z": "46efba90.c91554",
-        "name": "plot_database",
-        "group": "88e35b00.a73af8",
-        "order": 6,
-        "width": "18",
-        "height": "7",
-        "label": "Datenbank",
-        "chartType": "line",
-        "legend": "true",
-        "xformat": "HH:mm",
-        "interpolate": "linear",
-        "nodata": "keine Daten verfügbar :(",
-        "dot": false,
-        "ymin": "",
-        "ymax": "",
-        "removeOlder": "12",
-        "removeOlderPoints": "",
-        "removeOlderUnit": "3600",
-        "cutout": 0,
-        "useOneColor": false,
-        "colors": [
-            "#1f77b4",
-            "#aec7e8",
-            "#ff7f0e",
-            "#2ca02c",
-            "#98df8a",
-            "#d62728",
-            "#ff9896",
-            "#9467bd",
-            "#c5b0d5"
-        ],
-        "useOldStyle": true,
-        "x": 1204,
-        "y": 1655,
-        "wires": [
-            [],
-            []
-        ]
-    },
-    {
-        "id": "34d82408.18347c",
-        "type": "function",
-        "z": "46efba90.c91554",
-        "name": "set day",
-        "func": "function pad(n) {\n    if (n<10) // do zero padding\n    {\n        var str = \"0\" + n.toString();\n        return str;\n    }\n    else\n    {\n        return n.toString();\n    }\n}\n\n// initialise the day_choosed to actual date if it doesn't exist already\nvar day_choosed = context.get('day_choosed')||new Date(); // \n\n\nif (msg.topic == \"today\")\n{\n    day_choosed = new Date();\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == \"yesterday\")\n{\n    day_choosed = new Date();\n    day_choosed.setDate(day_choosed.getDate() - 1);\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == \"day_before\")\n{\n    day_choosed.setDate(day_choosed.getDate() - 1);\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == \"day_after\")\n{\n    day_choosed.setDate(day_choosed.getDate() + 1);\n    if (day_choosed > new Date())\n    {\n        day_choosed = new Date();\n    }\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == 'calendar')\n{\n    day_choosed = new Date(msg.payload);\n    if (day_choosed > new Date())\n    {\n        day_choosed = new Date();\n    }\n    context.set('day_choosed', day_choosed);\n}\n\n// convert into calendar time\nvar day_string = day_choosed.getFullYear() + \"-\" + \n                pad(day_choosed.getMonth() + 1) + \"-\" + \n                pad(day_choosed.getDate());\n\n\n//msg.payload = day_string;\n// make it part of the outgoing msg object\nmsg.day_choosed = day_string;\nmsg.payload = day_choosed;\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 328,
-        "y": 1471,
-        "wires": [
-            [
-                "37e1a067.1a639",
-                "e1ec37a0.0187d8",
-                "9a469f6c.87034",
-                "b9ad2d45.36fb8"
-            ]
-        ]
-    },
-    {
-        "id": "37e1a067.1a639",
-        "type": "debug",
-        "z": "46efba90.c91554",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "true",
-        "x": 633,
-        "y": 1610,
-        "wires": []
-    },
-    {
-        "id": "feab3401.75e7b8",
-        "type": "inject",
-        "z": "46efba90.c91554",
-        "name": "today",
-        "topic": "today",
-        "payload": "true",
-        "payloadType": "bool",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 141,
-        "y": 1383,
-        "wires": [
-            [
-                "34d82408.18347c"
-            ]
-        ]
-    },
-    {
-        "id": "d0e441e4.40ae9",
-        "type": "inject",
-        "z": "46efba90.c91554",
-        "name": "day_before",
-        "topic": "day_before",
-        "payload": "true",
-        "payloadType": "bool",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 145,
-        "y": 1478,
-        "wires": [
-            [
-                "34d82408.18347c"
-            ]
-        ]
-    },
-    {
-        "id": "6334191b.d29a18",
-        "type": "inject",
-        "z": "46efba90.c91554",
-        "name": "day_after",
-        "topic": "day_after",
-        "payload": "true",
-        "payloadType": "bool",
-        "repeat": "",
-        "crontab": "",
-        "once": false,
-        "x": 144,
-        "y": 1571,
-        "wires": [
-            [
-                "34d82408.18347c"
-            ]
-        ]
-    },
-    {
-        "id": "534b6e83.9864c",
-        "type": "ui_button",
-        "z": "46efba90.c91554",
-        "name": "today",
-        "group": "88e35b00.a73af8",
-        "order": 3,
-        "width": "2",
-        "height": "1",
-        "label": "Heute",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "true",
-        "payloadType": "bool",
-        "topic": "today",
-        "x": 133,
-        "y": 1423,
-        "wires": [
-            [
-                "34d82408.18347c"
-            ]
-        ]
-    },
-    {
-        "id": "6035e4e5.2caf1c",
-        "type": "ui_button",
-        "z": "46efba90.c91554",
-        "name": "day_before",
-        "group": "88e35b00.a73af8",
-        "order": 1,
-        "width": "2",
-        "height": "1",
-        "passthru": false,
-        "label": "Tag davor",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "true",
-        "payloadType": "bool",
-        "topic": "day_before",
-        "x": 154,
-        "y": 1520,
-        "wires": [
-            [
-                "34d82408.18347c"
-            ]
-        ]
-    },
-    {
-        "id": "d076c09.dcb414",
-        "type": "ui_button",
-        "z": "46efba90.c91554",
-        "name": "day_after",
-        "group": "88e35b00.a73af8",
-        "order": 2,
-        "width": "2",
-        "height": "1",
-        "passthru": false,
-        "label": "Tag danach",
-        "color": "",
-        "bgcolor": "",
-        "icon": "",
-        "payload": "true",
-        "payloadType": "bool",
-        "topic": "day_after",
-        "x": 138,
-        "y": 1625,
-        "wires": [
-            [
-                "34d82408.18347c"
-            ]
-        ]
-    },
-    {
-        "id": "df691860.afc6c8",
-        "type": "inject",
-        "z": "46efba90.c91554",
-        "name": "midnight",
-        "topic": "yesterday",
-        "payload": "true",
-        "payloadType": "bool",
-        "repeat": "",
-        "crontab": "00 00 * * *",
-        "once": false,
-        "x": 145,
-        "y": 1333,
-        "wires": [
-            [
-                "34d82408.18347c"
-            ]
-        ]
-    },
-    {
-        "id": "9a469f6c.87034",
-        "type": "ui_text",
-        "z": "46efba90.c91554",
-        "group": "88e35b00.a73af8",
-        "order": 4,
-        "width": "10",
-        "height": "1",
-        "name": "Datum",
-        "label": "Datum: ",
-        "format": "{{msg.day_choosed}}",
-        "layout": "row-left",
-        "x": 553,
-        "y": 1515,
-        "wires": []
-    },
-    {
-        "id": "8baea022.416f9",
-        "type": "ui_text",
-        "z": "46efba90.c91554",
-        "group": "88e35b00.a73af8",
-        "order": 5,
-        "width": "10",
-        "height": "1",
-        "name": "day_choosed_kWh",
-        "label": "Tagesertrag: ",
-        "format": "{{msg.payload}}",
-        "layout": "row-left",
-        "x": 1252,
-        "y": 1462,
-        "wires": []
-    },
-    {
-        "id": "8b2feeec.7f34c",
-        "type": "debug",
-        "z": "46efba90.c91554",
-        "name": "",
-        "active": true,
-        "console": "false",
-        "complete": "true",
-        "x": 1135,
-        "y": 1511,
-        "wires": []
     },
     {
         "id": "9f862cdf.74b3d",
@@ -1807,27 +1433,6 @@
         ]
     },
     {
-        "id": "b9ad2d45.36fb8",
-        "type": "ui_date_picker",
-        "z": "46efba90.c91554",
-        "name": "calendar",
-        "label": "Kalender",
-        "group": "88e35b00.a73af8",
-        "order": 7,
-        "width": "3",
-        "height": "1",
-        "passthru": false,
-        "topic": "calendar",
-        "x": 140.42039489746094,
-        "y": 1676.8264560699463,
-        "wires": [
-            [
-                "37e1a067.1a639",
-                "34d82408.18347c"
-            ]
-        ]
-    },
-    {
         "id": "d01fa69.0824d58",
         "type": "inject",
         "z": "46efba90.c91554",
@@ -1857,8 +1462,8 @@
         "repeat": "",
         "crontab": "50 23 * * 2",
         "once": false,
-        "x": 364,
-        "y": 1870,
+        "x": 428,
+        "y": 1483,
         "wires": [
             [
                 "6ea256ac.1fbca8"
@@ -1875,8 +1480,8 @@
         "useSpawn": "",
         "timer": "",
         "name": "reboot system",
-        "x": 771,
-        "y": 1865.5,
+        "x": 834,
+        "y": 1484.5,
         "wires": [
             [
                 "75450ca6.6c36d4"
@@ -1897,8 +1502,8 @@
         "active": true,
         "console": "false",
         "complete": "false",
-        "x": 994,
-        "y": 1870,
+        "x": 1057,
+        "y": 1489,
         "wires": []
     },
     {
@@ -1907,8 +1512,480 @@
         "z": "46efba90.c91554",
         "name": "Reboot system to avoid temporary files to spam SD card",
         "info": "",
-        "x": 396,
-        "y": 1806,
+        "x": 459,
+        "y": 1425,
+        "wires": []
+    },
+    {
+        "id": "4e090504.486bbc",
+        "type": "function",
+        "z": "3a75e211.4930ee",
+        "name": "SQL statement",
+        "func": "var db_msg = {topic: \"\"};\nvar year = new Date().getFullYear();\ndb_msg.topic = \"INSERT INTO `\" + msg.topic + \"_\" + year +\"` (`U_dc`, `I_dc`, `U_ac`, `I_ac`, `P_dc`, `P_ac`, `Tagesertrag`, `Gesamtertrag`, `Fehlercode`) VALUES (...)\";\nreturn db_msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 767.1000442504883,
+        "y": 970.0000066757202,
+        "wires": [
+            [
+                "44d238b0.9d48f8"
+            ]
+        ]
+    },
+    {
+        "id": "44d238b0.9d48f8",
+        "type": "debug",
+        "z": "3a75e211.4930ee",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 990.0999984741211,
+        "y": 971.0000066757202,
+        "wires": []
+    },
+    {
+        "id": "f7bfc0c.320db4",
+        "type": "inject",
+        "z": "3a75e211.4930ee",
+        "name": "Force",
+        "topic": "Online_data1",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 559.7999877929688,
+        "y": 980,
+        "wires": [
+            [
+                "4e090504.486bbc"
+            ]
+        ]
+    },
+    {
+        "id": "9548c4f2.a3c2a8",
+        "type": "comment",
+        "z": "3a75e211.4930ee",
+        "name": "Test some commands",
+        "info": "",
+        "x": 527.5,
+        "y": 729,
+        "wires": []
+    },
+    {
+        "id": "1013aecd.d92141",
+        "type": "comment",
+        "z": "46efba90.c91554",
+        "name": "Process all data from inverter; visualize and write to database",
+        "info": "",
+        "x": 445.5,
+        "y": 119,
+        "wires": []
+    },
+    {
+        "id": "2be3e75e.45bba8",
+        "type": "mysql",
+        "z": "3a75e211.4930ee",
+        "mydb": "a1a56ac3.5e8868",
+        "name": "Datenbank",
+        "x": 914,
+        "y": 318.5999755859375,
+        "wires": [
+            [
+                "faef6c3c.a5ca5",
+                "8d255f71.9ff32"
+            ]
+        ]
+    },
+    {
+        "id": "cf5ca5e9.8a8668",
+        "type": "function",
+        "z": "3a75e211.4930ee",
+        "name": "Select from DB",
+        "func": "var day_start = msg.day_choosed.substring(0,10) + \" 00:00:00\"\nvar day_end =  msg.day_choosed.substring(0,10) + \" 23:59:59\"\n\nmsg.topic = \"SELECT * \" +\n        \"FROM Online_data_overall \" +\n        \"WHERE Zeitstempel >= '\" + day_start + \n        \"' AND Zeitstempel <= '\" + day_end + \"'\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 724,
+        "y": 313.5999755859375,
+        "wires": [
+            [
+                "2be3e75e.45bba8",
+                "faef6c3c.a5ca5"
+            ]
+        ]
+    },
+    {
+        "id": "faef6c3c.a5ca5",
+        "type": "debug",
+        "z": "3a75e211.4930ee",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "false",
+        "x": 1308,
+        "y": 583.5999755859375,
+        "wires": []
+    },
+    {
+        "id": "8d255f71.9ff32",
+        "type": "function",
+        "z": "3a75e211.4930ee",
+        "name": "Filter data",
+        "func": "var length = msg.payload.length;\nvar array = Array(length);\nvar day_kWh = 0;\n// get Timezone offset \nvar offset = new Date().getTimezoneOffset(); // in minutes\nfor (var i = 0; i<length; i++)\n{\n    var timestamp = msg.payload[i]['Zeitstempel']\n    var pac = msg.payload[i]['P_ac'];\n    array[i] = [Date.parse(timestamp) + offset*60000, pac];\n    \n    // maximum of Tagesertrag\n    var aux = msg.payload[i]['Tagesertrag'];\n    if (aux >= day_kWh)\n    {\n        day_kWh = aux;\n    }\n}\n// correct energy\nday_kWh = 1.0374*day_kWh;\nday_kWh = Math.round(day_kWh*100)/100;\n\nvar msg = {payload: array};\nvar msg_kWh = {payload: \"\" + day_kWh + \" kWh\"};\nreturn [msg_kWh, msg];",
+        "outputs": "2",
+        "noerr": 0,
+        "x": 1110,
+        "y": 333.5999755859375,
+        "wires": [
+            [
+                "309a087.0e84df8",
+                "a502af9.cae7b5"
+            ],
+            [
+                "ee8e1132.99a56"
+            ]
+        ]
+    },
+    {
+        "id": "ee8e1132.99a56",
+        "type": "json",
+        "z": "3a75e211.4930ee",
+        "name": "",
+        "x": 1172,
+        "y": 391.5999755859375,
+        "wires": [
+            [
+                "ec17031f.8ce26"
+            ]
+        ]
+    },
+    {
+        "id": "ec17031f.8ce26",
+        "type": "function",
+        "z": "3a75e211.4930ee",
+        "name": "add cmd for chart",
+        "func": "msg.payload = \"[{\\\"key\\\":\\\"P_ac\\\",\\\"values\\\":\" + msg.payload + \"}]\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1269,
+        "y": 459.5999755859375,
+        "wires": [
+            [
+                "540080ad.df276"
+            ]
+        ]
+    },
+    {
+        "id": "540080ad.df276",
+        "type": "json",
+        "z": "3a75e211.4930ee",
+        "name": "",
+        "x": 1239,
+        "y": 527.5999755859375,
+        "wires": [
+            [
+                "faef6c3c.a5ca5",
+                "52d4cbd6.335424"
+            ]
+        ]
+    },
+    {
+        "id": "52d4cbd6.335424",
+        "type": "ui_chart",
+        "z": "3a75e211.4930ee",
+        "name": "plot_database",
+        "group": "88e35b00.a73af8",
+        "order": 6,
+        "width": "18",
+        "height": "7",
+        "label": "Datenbank",
+        "chartType": "line",
+        "legend": "true",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "keine Daten verfügbar :(",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "12",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": true,
+        "x": 1410,
+        "y": 520.5999755859375,
+        "wires": [
+            [],
+            []
+        ]
+    },
+    {
+        "id": "bb2f177c.3b8fd8",
+        "type": "function",
+        "z": "3a75e211.4930ee",
+        "name": "set day",
+        "func": "function pad(n) {\n    if (n<10) // do zero padding\n    {\n        var str = \"0\" + n.toString();\n        return str;\n    }\n    else\n    {\n        return n.toString();\n    }\n}\n\n// initialise the day_choosed to actual date if it doesn't exist already\nvar day_choosed = context.get('day_choosed')||new Date(); // \n\n\nif (msg.topic == \"today\")\n{\n    day_choosed = new Date();\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == \"yesterday\")\n{\n    day_choosed = new Date();\n    day_choosed.setDate(day_choosed.getDate() - 1);\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == \"day_before\")\n{\n    day_choosed.setDate(day_choosed.getDate() - 1);\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == \"day_after\")\n{\n    day_choosed.setDate(day_choosed.getDate() + 1);\n    if (day_choosed > new Date())\n    {\n        day_choosed = new Date();\n    }\n    context.set('day_choosed', day_choosed);\n}\nelse if (msg.topic == 'calendar')\n{\n    day_choosed = new Date(msg.payload);\n    if (day_choosed > new Date())\n    {\n        day_choosed = new Date();\n    }\n    context.set('day_choosed', day_choosed);\n}\n\n// convert into calendar time\nvar day_string = day_choosed.getFullYear() + \"-\" + \n                pad(day_choosed.getMonth() + 1) + \"-\" + \n                pad(day_choosed.getDate());\n\n\n//msg.payload = day_string;\n// make it part of the outgoing msg object\nmsg.day_choosed = day_string;\nmsg.payload = day_choosed;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 534,
+        "y": 336.5999755859375,
+        "wires": [
+            [
+                "8f669ecd.ab06c",
+                "cf5ca5e9.8a8668",
+                "75332a97.242494",
+                "85356319.54a63"
+            ]
+        ]
+    },
+    {
+        "id": "8f669ecd.ab06c",
+        "type": "debug",
+        "z": "3a75e211.4930ee",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 839,
+        "y": 475.5999755859375,
+        "wires": []
+    },
+    {
+        "id": "dd2205d2.fa0ab8",
+        "type": "inject",
+        "z": "3a75e211.4930ee",
+        "name": "today",
+        "topic": "today",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 347,
+        "y": 248.5999755859375,
+        "wires": [
+            [
+                "bb2f177c.3b8fd8"
+            ]
+        ]
+    },
+    {
+        "id": "3c2050dd.8da55",
+        "type": "inject",
+        "z": "3a75e211.4930ee",
+        "name": "day_before",
+        "topic": "day_before",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 351,
+        "y": 343.5999755859375,
+        "wires": [
+            [
+                "bb2f177c.3b8fd8"
+            ]
+        ]
+    },
+    {
+        "id": "76d47b30.35e8d4",
+        "type": "inject",
+        "z": "3a75e211.4930ee",
+        "name": "day_after",
+        "topic": "day_after",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "x": 350,
+        "y": 436.5999755859375,
+        "wires": [
+            [
+                "bb2f177c.3b8fd8"
+            ]
+        ]
+    },
+    {
+        "id": "144e18be.5fde37",
+        "type": "ui_button",
+        "z": "3a75e211.4930ee",
+        "name": "today",
+        "group": "88e35b00.a73af8",
+        "order": 3,
+        "width": "2",
+        "height": "1",
+        "label": "Heute",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "today",
+        "x": 339,
+        "y": 288.5999755859375,
+        "wires": [
+            [
+                "bb2f177c.3b8fd8"
+            ]
+        ]
+    },
+    {
+        "id": "9b76aff4.3e83a",
+        "type": "ui_button",
+        "z": "3a75e211.4930ee",
+        "name": "day_before",
+        "group": "88e35b00.a73af8",
+        "order": 1,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Tag davor",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "day_before",
+        "x": 360,
+        "y": 385.5999755859375,
+        "wires": [
+            [
+                "bb2f177c.3b8fd8"
+            ]
+        ]
+    },
+    {
+        "id": "b4df309.deb9fd",
+        "type": "ui_button",
+        "z": "3a75e211.4930ee",
+        "name": "day_after",
+        "group": "88e35b00.a73af8",
+        "order": 2,
+        "width": "2",
+        "height": "1",
+        "passthru": false,
+        "label": "Tag danach",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "topic": "day_after",
+        "x": 344,
+        "y": 490.5999755859375,
+        "wires": [
+            [
+                "bb2f177c.3b8fd8"
+            ]
+        ]
+    },
+    {
+        "id": "35326d4a.ddc0e2",
+        "type": "inject",
+        "z": "3a75e211.4930ee",
+        "name": "midnight",
+        "topic": "yesterday",
+        "payload": "true",
+        "payloadType": "bool",
+        "repeat": "",
+        "crontab": "00 00 * * *",
+        "once": false,
+        "x": 351,
+        "y": 198.5999755859375,
+        "wires": [
+            [
+                "bb2f177c.3b8fd8"
+            ]
+        ]
+    },
+    {
+        "id": "75332a97.242494",
+        "type": "ui_text",
+        "z": "3a75e211.4930ee",
+        "group": "88e35b00.a73af8",
+        "order": 4,
+        "width": "10",
+        "height": "1",
+        "name": "Datum",
+        "label": "Datum: ",
+        "format": "{{msg.day_choosed}}",
+        "layout": "row-left",
+        "x": 759,
+        "y": 380.5999755859375,
+        "wires": []
+    },
+    {
+        "id": "309a087.0e84df8",
+        "type": "ui_text",
+        "z": "3a75e211.4930ee",
+        "group": "88e35b00.a73af8",
+        "order": 5,
+        "width": "10",
+        "height": "1",
+        "name": "day_choosed_kWh",
+        "label": "Tagesertrag: ",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "x": 1458,
+        "y": 327.5999755859375,
+        "wires": []
+    },
+    {
+        "id": "a502af9.cae7b5",
+        "type": "debug",
+        "z": "3a75e211.4930ee",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "true",
+        "x": 1341,
+        "y": 376.5999755859375,
+        "wires": []
+    },
+    {
+        "id": "85356319.54a63",
+        "type": "ui_date_picker",
+        "z": "3a75e211.4930ee",
+        "name": "calendar",
+        "label": "Kalender",
+        "group": "88e35b00.a73af8",
+        "order": 7,
+        "width": "3",
+        "height": "1",
+        "passthru": false,
+        "topic": "calendar",
+        "x": 346.42039489746094,
+        "y": 542.4264316558838,
+        "wires": [
+            [
+                "8f669ecd.ab06c",
+                "bb2f177c.3b8fd8"
+            ]
+        ]
+    },
+    {
+        "id": "e11ec8dd.166e88",
+        "type": "comment",
+        "z": "3a75e211.4930ee",
+        "name": "Visualisation of database values",
+        "info": "",
+        "x": 560.3000183105469,
+        "y": 153,
         "wires": []
     }
 ]
