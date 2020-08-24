@@ -493,7 +493,7 @@
         "type": "function",
         "z": "46efba90.c91554",
         "name": "write online data",
-        "func": "if (msg.topic === \"Online_data1\" || msg.topic === \"Online_data2\" || msg.topic === \"Online_data3\")\n{\n    var buffer = msg.payload;\n    // convert data\n    var udc = buffer[0] * 2.8 + 200;\n    var idc = buffer[1] * 0.08;\n    var uac = buffer[2] + 100;\n    var iac = buffer[3] * 0.12;\n    var temp = buffer[4] - 40;  // Temperature\n    var s = buffer[5] * 6;      // radiation\n    var pdc = udc * idc;\n    var pac = uac * iac;\n    var wd = (buffer[6] * 256 + buffer[7]) *10 / 1000; // Tagesertrag kWh\n    var aux = buffer[11] & 0xC5;\n    var overflow = aux>>6 | (aux&4)<<1 | (aux&1)<<2;\n    var wtot = overflow * 65536 + buffer[8] * 256 + buffer[9];     // Gesamtertrag kWh\n    var error = buffer[10];\n    var data_string = \"'\" + udc + \"', '\" + idc + \"', '\" + uac + \"', '\" + iac + \"', '\" + pdc + \"', '\" + pac + \"', '\" + wd + \"', '\" + wtot + \"', '\" + error + \"'\";\n    var db_msg = {topic: \"\"};\n    var year = new Date().getFullYear();\n    db_msg.topic = \"INSERT INTO `\" + msg.topic + \"_\" + year +\"` (`U_dc`, `I_dc`, `U_ac`, `I_ac`, `P_dc`, `P_ac`, `Tagesertrag`, `Gesamtertrag`, `Fehlercode`) VALUES (\" + data_string + \")\";\n\n    return [db_msg, null];\n}\nelse if (msg.topic === \"Online_data_overall\")\n{\n    var buffer = msg.payload;\n    // convert data\n    var pdc = (buffer[0] * 256 + buffer[1])/1000;   // kW\n    var pac = (buffer[2] * 256 + buffer[3])/1000;   // kW\n    var temp = 0;\n    var radi = 0;\n    if (buffer[4] === 1) // no temperature sensor\n    {\n        temp = -40;\n    }\n    else \n    {\n        temp = buffer[4] - 40; // °C\n    }\n    if (buffer[5] === 1) // no radiation sensor\n    {\n        radi = 0;\n    }\n    else \n    {\n        radi = buffer[5] * 6;   // W/m^2\n    }\n    var wd = (buffer[6] * 256 + buffer[7]) * 10 / 1000; // Tagesertrag kWh\n    var aux = buffer[11] & 0xC5;\n    var overflow = aux>>6 | (aux&4)<<1 | (aux&1)<<2;\n    var wtot = overflow * 65536 + buffer[8] * 256 + buffer[9];     // Gesamtertrag kWh\n    var error = buffer[10];\n    // create database msg\n    var data_string = \"'\" + pdc + \"', '\" + pac + \"', '\" + temp + \"', '\" + radi + \"', '\" + wd + \"', '\" + wtot + \"', '\" + error + \"'\";\n    var db_msg = {topic: \"\"};\n    db_msg.topic = \"INSERT INTO `\" + msg.topic + \"`(`P_dc`, `P_ac`, `Temperatur`, `Radiation`, `Tagesertrag`, `Gesamtertrag`, `Fehlercode`) VALUES (\" + data_string + \")\";\n    \n    \n    var plot_pac = {payload: pac};\n    plot_pac.topic = \"pac\";\n    var print_wd = {payload: wd};\n    print_wd.topic = \"wd\";\n    var print_wtot = {payload: wtot};\n    print_wtot.topic = \"wtot\";\n    var print_error = {payload: error};\n    print_error.topic = \"error\";\n    return [db_msg, [plot_pac, print_wd, print_wtot, print_error]];\n}\n\n",
+        "func": "if (msg.topic === \"Online_data1\" || msg.topic === \"Online_data2\" || msg.topic === \"Online_data3\")\n{\n    var buffer = msg.payload;\n    // convert data\n    var udc = buffer[0] * 2.8 + 200;\n    var idc = buffer[1] * 0.08;\n    var uac = buffer[2] + 100;\n    var iac = buffer[3] * 0.12;\n    var temp = buffer[4] - 40;  // Temperature\n    var s = buffer[5] * 6;      // radiation\n    var pdc = udc * idc;\n    var pac = uac * iac;\n    var wd = (buffer[6] * 256 + buffer[7]) *10 / 1000; // Tagesertrag kWh\n    var aux = buffer[11] & 0xC5;\n    var overflow = aux>>6 | (aux&4)<<1 | (aux&1)<<2;\n    var wtot = overflow * 65536 + buffer[8] * 256 + buffer[9];     // Gesamtertrag kWh\n    var error = buffer[10];\n    var data_string = \"'\" + udc + \"', '\" + idc + \"', '\" + uac + \"', '\" + iac + \"', '\" + pdc + \"', '\" + pac + \"', '\" + wd + \"', '\" + wtot + \"', '\" + error + \"'\";\n    var db_msg = {topic: \"\"};\n    var year = new Date().getFullYear();\n    db_msg.topic = \"INSERT INTO `\" + msg.topic + \"_\" + year + \"` (`U_dc`, `I_dc`, `U_ac`, `I_ac`, `P_dc`, `P_ac`, `Tagesertrag`, `Gesamtertrag`, `Fehlercode`) VALUES (\" + data_string + \")\";\n\n    return [db_msg, null];\n}\nelse if (msg.topic === \"Online_data_overall\")\n{\n    var buffer = msg.payload;\n    // convert data\n    var pdc = (buffer[0] * 256 + buffer[1])/1000;   // kW\n    var pac = (buffer[2] * 256 + buffer[3])/1000;   // kW\n    var temp = 0;\n    var radi = 0;\n    if (buffer[4] === 1) // no temperature sensor\n    {\n        temp = -40;\n    }\n    else \n    {\n        temp = buffer[4] - 40; // °C\n    }\n    if (buffer[5] === 1) // no radiation sensor\n    {\n        radi = 0;\n    }\n    else \n    {\n        radi = buffer[5] * 6;   // W/m^2\n    }\n    var wd = (buffer[6] * 256 + buffer[7]) * 10 / 1000; // Tagesertrag kWh\n    var aux = buffer[11] & 0xC5;\n    var overflow = aux>>6 | (aux&4)<<1 | (aux&1)<<2;\n    var wtot = overflow * 65536 + buffer[8] * 256 + buffer[9];     // Gesamtertrag kWh\n    var error = buffer[10];\n    // create database msg\n    var data_string = \"'\" + pdc + \"', '\" + pac + \"', '\" + temp + \"', '\" + radi + \"', '\" + wd + \"', '\" + wtot + \"', '\" + error + \"'\";\n    var db_msg = {topic: \"\"};\n    var year = new Date().getFullYear();\n    db_msg.topic = \"INSERT INTO `\" + msg.topic + \"_\" + year + \"`(`P_dc`, `P_ac`, `Temperatur`, `Radiation`, `Tagesertrag`, `Gesamtertrag`, `Fehlercode`) VALUES (\" + data_string + \")\";\n    \n    \n    var plot_pac = {payload: pac};\n    plot_pac.topic = \"pac\";\n    var print_wd = {payload: wd};\n    print_wd.topic = \"wd\";\n    var print_wtot = {payload: wtot};\n    print_wtot.topic = \"wtot\";\n    var print_error = {payload: error};\n    print_error.topic = \"error\";\n    return [db_msg, [plot_pac, print_wd, print_wtot, print_error]];\n}\n\n",
         "outputs": "2",
         "noerr": 0,
         "x": 837,
@@ -1603,7 +1603,7 @@
         "type": "function",
         "z": "3a75e211.4930ee",
         "name": "Select from DB",
-        "func": "var day_start = msg.day_choosed.substring(0,10) + \" 00:00:00\"\nvar day_end =  msg.day_choosed.substring(0,10) + \" 23:59:59\"\n\nmsg.topic = \"SELECT * \" +\n        \"FROM Online_data_overall \" +\n        \"WHERE Zeitstempel >= '\" + day_start + \n        \"' AND Zeitstempel <= '\" + day_end + \"'\";\nreturn msg;",
+        "func": "var day_start = msg.day_choosed.substring(0,10) + \" 00:00:00\"\nvar day_end =  msg.day_choosed.substring(0,10) + \" 23:59:59\"\nvar year = msg.payload.getFullYear();\nmsg.topic = \"SELECT * \" +\n        \"FROM Online_data_overall_\" + year + \" \" +\n        \"WHERE Zeitstempel >= '\" + day_start + \n        \"' AND Zeitstempel <= '\" + day_end + \"'\";\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 724,
@@ -1756,7 +1756,7 @@
         "type": "debug",
         "z": "3a75e211.4930ee",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "true",
         "x": 839,
@@ -1950,7 +1950,7 @@
         "type": "debug",
         "z": "3a75e211.4930ee",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "true",
         "x": 1341,
@@ -1984,8 +1984,50 @@
         "z": "3a75e211.4930ee",
         "name": "Visualisation of database values",
         "info": "",
-        "x": 560.3000183105469,
-        "y": 153,
+        "x": 510.3000183105469,
+        "y": 146,
+        "wires": []
+    },
+    {
+        "id": "89368de.fc20c7",
+        "type": "catch",
+        "z": "3a75e211.4930ee",
+        "name": "Catch database errors",
+        "scope": [
+            "2be3e75e.45bba8"
+        ],
+        "x": 842.5,
+        "y": 200,
+        "wires": [
+            [
+                "e0e6fc3c.3e452"
+            ]
+        ]
+    },
+    {
+        "id": "e0e6fc3c.3e452",
+        "type": "function",
+        "z": "3a75e211.4930ee",
+        "name": "replacement values",
+        "func": "msg.payload = [];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 1108.5,
+        "y": 200,
+        "wires": [
+            [
+                "8d255f71.9ff32"
+            ]
+        ]
+    },
+    {
+        "id": "44474b59.211024",
+        "type": "comment",
+        "z": "3a75e211.4930ee",
+        "name": "non-existing tables",
+        "info": "",
+        "x": 833.5,
+        "y": 235,
         "wires": []
     }
 ]
